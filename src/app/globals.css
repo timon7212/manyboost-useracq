@@ -1,26 +1,241 @@
 @import "tailwindcss";
 
+/* GT Walsheim Pro Font */
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 100;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-UltraLight.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-Thin.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-Light.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-Regular.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+  src: url('/fonts/GTWalsheimPro-RegularOblique.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+  src: url('/fonts/GTWalsheimPro-LightOblique.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-Medium.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-Bold.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 800;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-Black.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "GTWalsheimPro";
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/GTWalsheimPro-UltraBold.woff2') format("woff2");
+}
+
+/* Design Tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --color-bg: #000000;
+  --color-bg-card: #111111;
+  --color-bg-elevated: #1a1a1a;
+  
+  --color-primary: #e97714;
+  --color-primary-dark: #c4640f;
+  
+  --color-text: #ffffff;
+  --color-text-muted: #999999;
+  --color-text-dim: #4b4b4b;
+  
+  --color-border: #585858;
+  --color-border-light: #909090;
+  
+  --color-success: #0d2704;
+  
+  /* Typography */
+  --font-display: 'GTWalsheimPro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  
+  /* Radius */
+  --radius-sm: 5px;
+  --radius-md: 9px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
+  --color-primary: var(--color-primary);
+  --color-card: var(--color-bg-card);
+  --color-muted: var(--color-text-muted);
+  --color-border: var(--color-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  background: linear-gradient(104deg, #ffffff 19%, #999999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+p {
+  font-style: normal;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(104deg, #ffffff 19%, #999999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-vertical {
+  background: linear-gradient(116deg, #ffffff 19%, #999999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* Card gradient fade */
+.card-fade-bottom {
+  background: linear-gradient(to top, rgb(17, 17, 17) 5%, transparent 96%);
+}
+
+.card-fade-right {
+  background: linear-gradient(to left, rgb(0, 0, 0) 5%, transparent 96%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Hide scrollbar for slider */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #444;
 }
