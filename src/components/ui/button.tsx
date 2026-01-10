@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -24,15 +23,14 @@ const sizes = {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
     return (
-      <motion.button
+      <button
         ref={ref}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
         className={cn(
           "inline-flex items-center justify-center rounded-[var(--radius-xl)]",
-          "font-medium tracking-tight transition-colors",
+          "font-medium tracking-tight transition-all duration-200",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]",
           "disabled:opacity-50 disabled:pointer-events-none",
+          "hover:scale-[1.02] active:scale-[0.98]",
           variants[variant],
           sizes[size],
           className
@@ -40,11 +38,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {children}
-      </motion.button>
+      </button>
     );
   }
 );
 
 Button.displayName = "Button";
-
-
