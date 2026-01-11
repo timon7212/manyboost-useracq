@@ -85,8 +85,8 @@ export function CareersSection() {
               </h3>
               <p className="text-[15px] text-[#666] max-w-[400px] mx-auto">
                 We&apos;re always looking for talented people. Send your resume to{" "}
-                <a href="mailto:careers@manyboost.me" className="text-[#e97714] hover:underline">
-                  careers@manyboost.me
+                <a href="mailto:careers@manyboost.io" className="text-[#e97714] hover:underline">
+                  careers@manyboost.io
                 </a>
               </p>
             </motion.div>
@@ -95,7 +95,7 @@ export function CareersSection() {
             jobs.map((job, index) => (
               <motion.a
                 key={job.id}
-                href={`mailto:careers@manyboost.me?subject=Application: ${job.title}`}
+                href={`mailto:careers@manyboost.io?subject=Application: ${job.title}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -166,7 +166,7 @@ export function CareersSection() {
           >
             <p className="text-[14px] text-[#555]">
               Don&apos;t see your role?{" "}
-              <a href="mailto:careers@manyboost.me" className="text-[#e97714] hover:underline">
+              <a href="mailto:careers@manyboost.io" className="text-[#e97714] hover:underline">
                 Send us your resume anyway
               </a>
             </p>

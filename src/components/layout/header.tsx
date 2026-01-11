@@ -4,168 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
-// Contact Modal Component
-function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSending(true);
-    
-    // Simulate sending (replace with actual API call)
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Open mailto as fallback
-    const subject = encodeURIComponent(`New inquiry from ${form.name} - ${form.company}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\n\nMessage:\n${form.message}`);
-    window.location.href = `mailto:sales@manyboost.io?subject=${subject}&body=${body}`;
-    
-    setSending(false);
-    setSent(true);
-    setTimeout(() => {
-      onClose();
-      setSent(false);
-      setForm({ name: "", email: "", company: "", message: "" });
-    }, 2000);
-  };
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
-          />
-          
-          {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[480px] z-[101] px-4"
-          >
-            <div 
-              className="rounded-[24px] p-[1px]"
-              style={{ background: 'linear-gradient(135deg, #e97714 0%, #333 50%, #e97714 100%)' }}
-            >
-              <div className="bg-[#0a0a0a] rounded-[23px] p-6 md:p-8">
-                {/* Close button */}
-                <button 
-                  onClick={onClose}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#1a1a1a] hover:bg-[#222] transition-colors"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2">
-                    <path d="M18 6L6 18M6 6l12 12"/>
-                  </svg>
-                </button>
-
-                {sent ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 rounded-full bg-[#22c55e]/10 flex items-center justify-center mx-auto mb-4">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2">
-                        <path d="M20 6L9 17l-5-5"/>
-                      </svg>
-                    </div>
-                    <h3 className="text-[20px] font-medium text-white mb-2">Message sent!</h3>
-                    <p className="text-[14px] text-[#666]">We&apos;ll get back to you soon.</p>
-                  </div>
-                ) : (
-                  <>
-                    <h2 className="text-[24px] md:text-[28px] font-medium text-white mb-2">
-                      Get in touch
-                    </h2>
-                    <p className="text-[14px] text-[#666] mb-6">
-                      Tell us about your needs and we&apos;ll reach out within 24 hours.
-                    </p>
-
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-[12px] text-[#666] mb-1.5">Name *</label>
-                          <input
-                            type="text"
-                            required
-                            value={form.name}
-                            onChange={(e) => setForm({ ...form, name: e.target.value })}
-                            className="w-full px-4 py-3 bg-[#111] border border-[#222] rounded-[12px] text-white text-[14px] focus:outline-none focus:border-[#e97714] transition-colors"
-                            placeholder="John Doe"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-[12px] text-[#666] mb-1.5">Company</label>
-                          <input
-                            type="text"
-                            value={form.company}
-                            onChange={(e) => setForm({ ...form, company: e.target.value })}
-                            className="w-full px-4 py-3 bg-[#111] border border-[#222] rounded-[12px] text-white text-[14px] focus:outline-none focus:border-[#e97714] transition-colors"
-                            placeholder="Company name"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-[12px] text-[#666] mb-1.5">Email *</label>
-                        <input
-                          type="email"
-                          required
-                          value={form.email}
-                          onChange={(e) => setForm({ ...form, email: e.target.value })}
-                          className="w-full px-4 py-3 bg-[#111] border border-[#222] rounded-[12px] text-white text-[14px] focus:outline-none focus:border-[#e97714] transition-colors"
-                          placeholder="john@company.com"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-[12px] text-[#666] mb-1.5">Message *</label>
-                        <textarea
-                          required
-                          rows={4}
-                          value={form.message}
-                          onChange={(e) => setForm({ ...form, message: e.target.value })}
-                          className="w-full px-4 py-3 bg-[#111] border border-[#222] rounded-[12px] text-white text-[14px] focus:outline-none focus:border-[#e97714] transition-colors resize-none"
-                          placeholder="Tell us about your goals..."
-                        />
-                      </div>
-
-                      <button
-                        type="submit"
-                        disabled={sending}
-                        className="w-full py-3.5 bg-[#e97714] hover:bg-[#d16a10] disabled:opacity-50 text-black font-semibold rounded-full text-[15px] transition-colors"
-                      >
-                        {sending ? "Sending..." : "Send message"}
-                      </button>
-
-                      <p className="text-[12px] text-[#444] text-center">
-                        Or email us directly at{" "}
-                        <a href="mailto:sales@manyboost.io" className="text-[#e97714] hover:underline">
-                          sales@manyboost.io
-                        </a>
-                      </p>
-                    </form>
-                  </>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-}
+import { LeadModal } from "@/components/ui/lead-modal";
 
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
+
+  // Determine lead type based on current page
+  const getLeadType = (): "creator" | "publisher" | "advertiser" => {
+    if (pathname === "/creators") return "creator";
+    if (pathname === "/offerwall") return "publisher";
+    return "advertiser";
+  };
 
   const navItems = [
     { href: "/", label: "Advertisers", description: "UA Campaigns" },
@@ -233,7 +84,7 @@ export function Header() {
             {/* Social links - Desktop */}
             <div className="hidden sm:flex items-center gap-1">
               <a
-                href="https://linkedin.com/company/manyboost"
+                href="https://www.linkedin.com/company/110627158"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1a1a1a] transition-colors group"
@@ -259,10 +110,10 @@ export function Header() {
 
             {/* CTA Button */}
             <button
-              onClick={() => setContactOpen(true)}
+              onClick={() => setLeadModalOpen(true)}
               className="px-5 py-2.5 bg-[#e97714] hover:bg-[#d16a10] text-black font-semibold rounded-full text-[13px] transition-colors shadow-lg shadow-[#e97714]/20"
             >
-              Contact us
+              {pathname === "/creators" ? "Start earning" : pathname === "/offerwall" ? "Get started" : "Contact us"}
             </button>
 
             {/* Mobile menu button */}
@@ -310,7 +161,7 @@ export function Header() {
                 {/* Mobile socials */}
                 <div className="flex items-center gap-2 px-4 pt-4 border-t border-[#1a1a1a] mt-4">
                   <a
-                    href="https://linkedin.com/company/manyboost"
+                    href="https://www.linkedin.com/company/110627158"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-3 bg-[#111] rounded-[12px] text-[13px] text-[#888]"
@@ -338,8 +189,12 @@ export function Header() {
         </AnimatePresence>
       </motion.header>
 
-      {/* Contact Modal */}
-      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
+      {/* Lead Modal - changes based on current page */}
+      <LeadModal 
+        isOpen={leadModalOpen} 
+        onClose={() => setLeadModalOpen(false)} 
+        type={getLeadType()}
+      />
     </>
   );
 }

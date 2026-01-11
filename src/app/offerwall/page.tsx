@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { LeadModal } from "@/components/ui/lead-modal";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
@@ -143,9 +144,12 @@ function IntegrationBadge({ name, icon, delay }: { name: string; icon: React.Rea
 }
 
 export default function OfferwallPage() {
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
+  
   return (
     <>
       <Header />
+      <LeadModal isOpen={leadModalOpen} onClose={() => setLeadModalOpen(false)} type="publisher" />
       <main className="min-h-screen bg-black overflow-x-hidden">
         {/* Hero Section */}
         <section className="relative pt-20 md:pt-32 pb-16 md:pb-24 px-4 overflow-hidden">
@@ -198,12 +202,18 @@ export default function OfferwallPage() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <button className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-medium rounded-full text-[16px] transition-colors duration-200">
+              <button 
+                onClick={() => setLeadModalOpen(true)}
+                className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-medium rounded-full text-[16px] transition-colors duration-200"
+              >
                 Start Monetizing
               </button>
-              <button className="px-8 py-4 bg-transparent border border-[#333] hover:border-[#555] text-white font-medium rounded-full text-[16px] transition-colors duration-200">
-                View Documentation
-              </button>
+              <a 
+                href="mailto:sales@manyboost.io"
+                className="px-8 py-4 bg-transparent border border-[#333] hover:border-[#555] text-white font-medium rounded-full text-[16px] transition-colors duration-200"
+              >
+                Contact Sales
+              </a>
             </motion.div>
           </div>
         </section>
@@ -468,12 +478,18 @@ export default function OfferwallPage() {
                   Join 500+ publishers already earning with ManyBoost offerwalls.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-medium rounded-full text-[16px] transition-colors duration-200 w-full sm:w-auto">
+                  <button 
+                    onClick={() => setLeadModalOpen(true)}
+                    className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-medium rounded-full text-[16px] transition-colors duration-200 w-full sm:w-auto"
+                  >
                     Get Started Free
                   </button>
-                  <button className="px-8 py-4 bg-transparent border border-[#22c55e]/30 hover:border-[#22c55e]/50 text-[#22c55e] font-medium rounded-full text-[16px] transition-colors duration-200 w-full sm:w-auto">
+                  <a 
+                    href="mailto:sales@manyboost.io"
+                    className="px-8 py-4 bg-transparent border border-[#22c55e]/30 hover:border-[#22c55e]/50 text-[#22c55e] font-medium rounded-full text-[16px] transition-colors duration-200 w-full sm:w-auto text-center"
+                  >
                     Contact Sales
-                  </button>
+                  </a>
                 </div>
                 <p className="text-[12px] text-[#444] mt-6">
                   No credit card required • 5-minute setup • NET-7 payouts

@@ -95,7 +95,7 @@ export function TeamSection() {
               ) : jobs.length === 0 ? (
                 <div className="text-center py-6">
                   <p className="text-[13px] text-[#555] mb-2">No open positions</p>
-                  <a href="mailto:careers@manyboost.me" className="text-[13px] text-[#e97714] hover:underline">
+                  <a href="mailto:careers@manyboost.io" className="text-[13px] text-[#e97714] hover:underline">
                     Send resume anyway →
                   </a>
                 </div>
@@ -104,7 +104,7 @@ export function TeamSection() {
                   {jobs.map((job) => (
                     <a
                       key={job.id}
-                      href={`mailto:careers@manyboost.me?subject=Application: ${job.title}`}
+                      href={`mailto:careers@manyboost.io?subject=Application: ${job.title}`}
                       className="flex items-center justify-between p-3.5 bg-[#0c0c0c] hover:bg-[#111] border border-[#1a1a1a] rounded-[10px] group transition-colors"
                     >
                       <div className="flex items-center gap-3">

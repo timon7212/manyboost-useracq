@@ -3,11 +3,19 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+// Real game studio icons
+const GAME_STUDIOS = [
+  "/gamestudio.png",
+  "/gamestudio1.png",
+  "/gamestudio2.png",
+  "/gamestudio3.png",
+  "/gamestudio4.png",
+  "/gamestudio5.png",
+];
+
 export function AppsShowcaseSection() {
-  // Create enough icons for seamless loop
-  const iconsSet = Array(15).fill("/HeroApps.png");
-  // Double for seamless loop
-  const icons = [...iconsSet, ...iconsSet];
+  // Create enough icons for seamless loop - repeat the set multiple times
+  const icons = [...GAME_STUDIOS, ...GAME_STUDIOS, ...GAME_STUDIOS, ...GAME_STUDIOS, ...GAME_STUDIOS];
 
   return (
     <section className="relative py-16 md:py-24 overflow-hidden bg-black">
@@ -51,13 +59,13 @@ export function AppsShowcaseSection() {
           <motion.div
             className="flex items-center"
             animate={{
-              x: [0, -1440],
+              x: [0, -1800],
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 40,
                 ease: "linear",
               },
             }}
@@ -66,17 +74,17 @@ export function AppsShowcaseSection() {
             {icons.map((icon, idx) => (
               <div
                 key={idx}
-                className="flex-shrink-0 mx-3"
+                className="flex-shrink-0 mx-4"
               >
                 <Image
                   src={icon}
-                  alt="App icon"
-                  width={80}
-                  height={80}
-                  className="rounded-[18px] shadow-lg"
+                  alt="Game studio"
+                  width={100}
+                  height={100}
+                  className="rounded-[20px] shadow-lg"
                   style={{ 
-                    width: `${70 + (idx % 3) * 5}px`, 
-                    height: `${70 + (idx % 3) * 5}px` 
+                    width: '92px', 
+                    height: '92px' 
                   }}
                 />
               </div>

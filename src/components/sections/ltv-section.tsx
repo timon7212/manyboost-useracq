@@ -9,17 +9,17 @@ interface BarData {
 }
 
 const otherOfferwallsData: BarData[] = [
-  { label: "D7", height: 100, value: "32%" },
-  { label: "D14", height: 35, value: "11%" },
-  { label: "D30", height: 12, value: "4%" },
-  { label: "D60", height: 3, value: "1%" },
+  { label: "D7", height: 100, value: "" },
+  { label: "D14", height: 35, value: "" },
+  { label: "D30", height: 12, value: "" },
+  { label: "D60", height: 3, value: "" },
 ];
 
 const manyBoostData: BarData[] = [
-  { label: "D7", height: 100, value: "47%" },
-  { label: "D14", height: 85, value: "40%" },
-  { label: "D30", height: 67, value: "31%" },
-  { label: "D60", height: 52, value: "24%" },
+  { label: "D7", height: 100, value: "" },
+  { label: "D14", height: 85, value: "" },
+  { label: "D30", height: 67, value: "" },
+  { label: "D60", height: 52, value: "" },
 ];
 
 function RetentionChart({
@@ -69,7 +69,7 @@ function RetentionChart({
           {isGreen && (
             <div className="flex items-center gap-1.5 bg-[#4ade80]/10 px-3 py-1.5 rounded-full">
               <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
-              <span className="text-[11px] text-[#4ade80] font-medium">+47% avg</span>
+              <span className="text-[11px] text-[#4ade80] font-medium">Higher retention</span>
             </div>
           )}
         </div>
@@ -202,9 +202,8 @@ export function LtvSection() {
         >
           <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#333]" />
           <p className="text-[14px] text-[#666] text-center">
-            <span className="text-[#4ade80] font-medium">24% D60 retention</span>
-            {" "}vs industry average of{" "}
-            <span className="text-[#666]">1-3%</span>
+            <span className="text-[#4ade80] font-medium">Significant retention advantage</span>
+            {" "}compared to traditional offerwalls
           </p>
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#333]" />
         </motion.div>

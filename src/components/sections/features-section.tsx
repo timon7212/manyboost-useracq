@@ -10,8 +10,8 @@ const features = [
         <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4"/>
       </svg>
     ),
-    title: "CPI / CPA pricing",
-    description: "Pay only for real installs and actions. No impressions, no wasted budget.",
+    title: "CPI / CPE / CPA pricing",
+    description: "Pay only for real installs, events, and actions. No impressions, no wasted budget.",
     highlight: true,
   },
   {

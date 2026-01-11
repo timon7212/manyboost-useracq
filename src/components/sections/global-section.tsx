@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import { Globe } from "@/components/ui/globe";
 import { CreatorCard } from "@/components/ui/creator-card";
 
-const AVATAR_URL = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=106&h=106&fit=crop&crop=face";
-
+// Real creators data
 const creators = [
-  { handle: "rodrigo", followers: "1M followers", avatarUrl: AVATAR_URL },
-  { handle: "maria", followers: "2.5M followers", avatarUrl: AVATAR_URL },
-  { handle: "alex", followers: "800K followers", avatarUrl: AVATAR_URL },
-  { handle: "sofia", followers: "1.2M followers", avatarUrl: AVATAR_URL },
+  { handle: "dr.sarabendida", followers: "705K followers", avatarUrl: "/realcreator3_drsarabendida.jpg" },
+  { handle: "tonali_sarkar", followers: "322K followers", avatarUrl: "/realcreator2_tonalisarkar.jpg" },
+  { handle: "hinaashh", followers: "268K followers", avatarUrl: "/realcreator4_hinaashh.jpg" },
+  { handle: "greeneyed.gurl", followers: "183K followers", avatarUrl: "/realcreator6_greeneyedgurl.jpg" },
 ];
 
 export function GlobalSection() {
@@ -74,7 +73,7 @@ export function GlobalSection() {
               transition={{ duration: 0.5 }}
               className="text-[36px] md:text-[48px] lg:text-[59px] tracking-[-0.05em] leading-[0.86] mb-2 md:mb-3 font-medium"
             >
-              <span className="gradient-text">400M+</span>
+              <span className="gradient-text">500M+</span>
               <span className="font-light text-[#999]"> Network</span>
             </motion.h2>
 
@@ -90,7 +89,7 @@ export function GlobalSection() {
                 From T1 → T2
               </span>
               <span className="text-[#e97714] text-[15px] md:text-[21px] tracking-[-0.05em]">
-                10k+ Creators
+                3,700+ Creators
               </span>
             </motion.div>
 

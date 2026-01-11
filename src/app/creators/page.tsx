@@ -5,10 +5,17 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { useState } from "react";
 import Image from "next/image";
+import { LeadModal } from "@/components/ui/lead-modal";
 
-const AVATAR_1 = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face";
-const AVATAR_2 = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face";
-const AVATAR_3 = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=face";
+// Real creators data
+const CREATORS = {
+  zeynap: { avatar: "/realcreator1_zeynapma.jpg", name: "@zeynap.ma", followers: "123K" },
+  tonali: { avatar: "/realcreator2_tonalisarkar.jpg", name: "@tonali_sarkar", followers: "322K" },
+  sara: { avatar: "/realcreator3_drsarabendida.jpg", name: "@dr.sarabendida", followers: "705K" },
+  hina: { avatar: "/realcreator4_hinaashh.jpg", name: "@hinaashh", followers: "268K" },
+  aynees: { avatar: "/realcreator5_ayneesworld.jpg", name: "@aynees_world", followers: "49K" },
+  greeneyed: { avatar: "/realcreator6_greeneyedgurl.jpg", name: "@greeneyed.gurl", followers: "183K" },
+};
 
 // Placeholder for screenshots
 function ImagePlaceholder({ label, aspect = "video" }: { label: string; aspect?: "video" | "phone" }) {
@@ -148,15 +155,18 @@ function FAQItem({ question, answer, delay }: { question: string; answer: string
 }
 
 export default function CreatorsPage() {
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
+  
   return (
     <>
       <Header />
+      <LeadModal isOpen={leadModalOpen} onClose={() => setLeadModalOpen(false)} type="creator" />
       <main className="min-h-screen bg-black overflow-x-hidden">
         
         {/* ============================================ */}
         {/* HERO: Direct value proposition */}
         {/* ============================================ */}
-        <section className="relative min-h-screen flex items-center px-4 overflow-hidden bg-black">
+        <section className="relative min-h-screen flex items-center px-4 pt-20 md:pt-16 overflow-hidden bg-black">
           {/* Animated 3D gradient background */}
           <div className="absolute inset-0 overflow-hidden">
             {/* Blob 1 */}
@@ -257,16 +267,19 @@ export default function CreatorsPage() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4"
                 >
-                  <button className="px-7 py-3.5 bg-[#e97714] hover:bg-[#d16a10] text-black font-semibold rounded-full text-[16px] transition-colors duration-200 shadow-lg shadow-[#e97714]/20">
+                  <button 
+                    onClick={() => setLeadModalOpen(true)}
+                    className="px-7 py-3.5 bg-[#e97714] hover:bg-[#d16a10] text-black font-semibold rounded-full text-[16px] transition-colors duration-200 shadow-lg shadow-[#e97714]/20"
+                  >
                     Start earning →
                   </button>
                   <div className="flex items-center gap-2 py-2">
                     <div className="flex -space-x-2">
-                      <Image src={AVATAR_1} alt="" width={26} height={26} className="rounded-full border-2 border-black" />
-                      <Image src={AVATAR_2} alt="" width={26} height={26} className="rounded-full border-2 border-black" />
-                      <Image src={AVATAR_3} alt="" width={26} height={26} className="rounded-full border-2 border-black" />
+                      <Image src={CREATORS.sara.avatar} alt={CREATORS.sara.name} width={26} height={26} className="rounded-full border-2 border-black object-cover" />
+                      <Image src={CREATORS.tonali.avatar} alt={CREATORS.tonali.name} width={26} height={26} className="rounded-full border-2 border-black object-cover" />
+                      <Image src={CREATORS.hina.avatar} alt={CREATORS.hina.name} width={26} height={26} className="rounded-full border-2 border-black object-cover" />
                     </div>
-                    <span className="text-[12px] text-[#666]">2,400+ creators</span>
+                    <span className="text-[12px] text-[#666]">3,700+ creators</span>
                   </div>
                 </motion.div>
               </div>
@@ -369,7 +382,7 @@ export default function CreatorsPage() {
                   Story, reel, TikTok — post naturally. Your unique link tracks every install.
                 </p>
                 <div className="bg-[#111] rounded-[10px] p-3 border border-[#1a1a1a] inline-block">
-                  <code className="text-[13px] text-[#e97714]">manyboost.me/yourname</code>
+                  <code className="text-[13px] text-[#e97714]">manyboost.io/yourname</code>
                 </div>
               </motion.div>
               <motion.div
@@ -428,11 +441,11 @@ export default function CreatorsPage() {
                         {/* Avatar & Name */}
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#22c55e]">
-                            <Image src={AVATAR_1} alt="" width={48} height={48} className="w-full h-full object-cover" />
+                            <Image src={CREATORS.sara.avatar} alt={CREATORS.sara.name} width={48} height={48} className="w-full h-full object-cover" />
                           </div>
                           <div>
-                            <p className="text-[14px] font-medium text-white">@jessica</p>
-                            <p className="text-[11px] text-[#22c55e]">47K followers</p>
+                            <p className="text-[14px] font-medium text-white">{CREATORS.sara.name}</p>
+                            <p className="text-[11px] text-[#22c55e]">{CREATORS.sara.followers} followers</p>
                           </div>
                         </div>
                         
@@ -479,11 +492,11 @@ export default function CreatorsPage() {
                         {/* Avatar & Name */}
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#333]">
-                            <Image src={AVATAR_2} alt="" width={48} height={48} className="w-full h-full object-cover" />
+                            <Image src={CREATORS.tonali.avatar} alt={CREATORS.tonali.name} width={48} height={48} className="w-full h-full object-cover" />
                           </div>
                           <div>
-                            <p className="text-[14px] font-medium text-[#888]">@marcus</p>
-                            <p className="text-[11px] text-[#555]">52K followers</p>
+                            <p className="text-[14px] font-medium text-[#888]">{CREATORS.tonali.name}</p>
+                            <p className="text-[11px] text-[#555]">{CREATORS.tonali.followers} followers</p>
                           </div>
                         </div>
                         
@@ -591,46 +604,7 @@ export default function CreatorsPage() {
           </div>
         </section>
 
-        {/* ============================================ */}
-        {/* SECTION: Calculator */}
-        {/* ============================================ */}
-        <section className="py-16 md:py-24 px-4 bg-[#050505]">
-          <div className="max-w-[600px] mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-10"
-            >
-              <h2 className="text-[32px] md:text-[44px] tracking-[-0.03em] mb-3 font-medium text-white">
-                What could <span className="text-[#e97714]">you</span> make?
-              </h2>
-              <p className="text-[16px] text-[#666]">Slide to see your potential 👇</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="rounded-[24px] p-[1px]"
-              style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%)' }}
-            >
-              <EarningsCalculator />
-            </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-[13px] text-[#444] text-center mt-6"
-            >
-              * Based on average conversion rates. Your results may vary based on audience engagement.
-            </motion.p>
-          </div>
-        </section>
+{/* Calculator section hidden - removed to avoid showing margins to advertisers */}
 
         {/* ============================================ */}
         {/* SECTION: Social Proof - Compact */}
@@ -650,10 +624,10 @@ export default function CreatorsPage() {
                   &quot;I was skeptical. Another &apos;make money online&apos; thing? Tried one post, made <span className="text-white font-medium">$340</span>. Now I do 3 posts a week.&quot;
                 </p>
                 <div className="flex items-center justify-center gap-3">
-                  <Image src={AVATAR_1} alt="" width={40} height={40} className="rounded-full" />
+                  <Image src={CREATORS.zeynap.avatar} alt={CREATORS.zeynap.name} width={40} height={40} className="rounded-full object-cover" />
                   <div>
-                    <p className="text-[14px] text-white font-medium">Jessica M.</p>
-                    <p className="text-[12px] text-[#666]">47K followers • $2,840 earned</p>
+                    <p className="text-[14px] text-white font-medium">{CREATORS.zeynap.name}</p>
+                    <p className="text-[12px] text-[#666]">{CREATORS.zeynap.followers} followers</p>
                   </div>
                 </div>
               </div>
@@ -839,7 +813,10 @@ export default function CreatorsPage() {
               <p className="text-[15px] text-[#666] mb-6">
                 Free forever. No minimums. Weekly payouts.
               </p>
-              <button className="px-8 py-4 bg-[#e97714] hover:bg-[#d16a10] text-black font-semibold rounded-full text-[17px] transition-colors duration-200 shadow-lg shadow-[#e97714]/30">
+              <button 
+                onClick={() => setLeadModalOpen(true)}
+                className="px-8 py-4 bg-[#e97714] hover:bg-[#d16a10] text-black font-semibold rounded-full text-[17px] transition-colors duration-200 shadow-lg shadow-[#e97714]/30"
+              >
                 Get started →
               </button>
             </motion.div>

@@ -134,7 +134,7 @@ function DashboardMockup() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className="text-[12px] text-[#666] uppercase tracking-[0.1em] mb-1">Campaign Performance</p>
-            <p className="text-[14px] text-[#9A9A9A]">Last 30 days</p>
+            <p className="text-[14px] text-[#9A9A9A]">Real-time analytics</p>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
@@ -142,13 +142,22 @@ function DashboardMockup() {
           </div>
         </div>
 
-        {/* Main metric */}
-        <div className="mb-8">
-          <div className="flex items-end gap-3 mb-2">
-            <CounterDisplay value={247} prefix="$" suffix="K" />
-            <span className="text-[16px] text-[#22c55e] font-medium pb-2">+34.2%</span>
+        {/* Main metrics row */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="bg-[#111] rounded-[12px] p-4">
+            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em] mb-2">Installs</p>
+            <div className="flex items-baseline gap-2">
+              <div className="h-8 w-24 bg-[#1a1a1a] rounded animate-pulse" />
+              <span className="text-[12px] text-[#22c55e] font-medium">↑</span>
+            </div>
           </div>
-          <p className="text-[14px] text-[#666]">Revenue from creator campaigns</p>
+          <div className="bg-[#111] rounded-[12px] p-4">
+            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em] mb-2">Revenue</p>
+            <div className="flex items-baseline gap-2">
+              <div className="h-8 w-20 bg-[#1a1a1a] rounded animate-pulse" />
+              <span className="text-[12px] text-[#22c55e] font-medium">↑</span>
+            </div>
+          </div>
         </div>
 
         {/* Chart area */}
@@ -158,30 +167,39 @@ function DashboardMockup() {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 rounded-full bg-[#e97714]" />
-                <span className="text-[10px] text-[#666]">This month</span>
+                <span className="text-[10px] text-[#666]">Current</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 rounded-full bg-[#2a2a2a]" />
-                <span className="text-[10px] text-[#666]">Last month</span>
+                <span className="text-[10px] text-[#666]">Previous</span>
               </div>
             </div>
           </div>
           <MiniChart />
         </div>
 
-        {/* Stats row */}
+        {/* KPI row - UA manager language */}
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center">
-            <p className="text-[24px] font-medium text-white tracking-[-0.02em]">$0.42</p>
-            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em]">Avg CPI</p>
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <span className="text-[18px] font-medium text-white">CPI</span>
+              <span className="text-[12px] text-[#22c55e]">↓</span>
+            </div>
+            <p className="text-[11px] text-[#666]">Below target</p>
           </div>
           <div className="text-center border-x border-[#1a1a1a]">
-            <p className="text-[24px] font-medium text-[#e97714] tracking-[-0.02em]">3.2x</p>
-            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em]">ROAS</p>
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <span className="text-[18px] font-medium text-[#e97714]">ROAS</span>
+              <span className="text-[12px] text-[#22c55e]">↑</span>
+            </div>
+            <p className="text-[11px] text-[#666]">Above target</p>
           </div>
           <div className="text-center">
-            <p className="text-[24px] font-medium text-white tracking-[-0.02em]">47%</p>
-            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em]">D7 Retention</p>
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <span className="text-[18px] font-medium text-white">D7</span>
+              <span className="text-[12px] text-[#22c55e]">↑</span>
+            </div>
+            <p className="text-[11px] text-[#666]">Strong retention</p>
           </div>
         </div>
       </div>
@@ -246,7 +264,7 @@ export function ResultsSection() {
           {/* Dashboard */}
           <DashboardMockup />
 
-          {/* Bottom metrics */}
+          {/* Bottom features */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -254,9 +272,51 @@ export function ResultsSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <MetricCard value={156} label="Active Creators" suffix="K" delay={0.4} trend="+12%" />
-            <MetricCard value={89} label="Avg Completion" suffix="%" delay={0.5} />
-            <MetricCard value={2} label="Time to Scale" suffix=" weeks" delay={0.6} />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="rounded-[16px] p-[1px]"
+              style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%)' }}
+            >
+              <div className="bg-[#0a0a0a] rounded-[15px] px-5 py-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#e97714]/10 flex items-center justify-center">
+                  <span className="text-[14px]">📊</span>
+                </div>
+                <span className="text-[13px] text-[#888]">Full attribution tracking</span>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="rounded-[16px] p-[1px]"
+              style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%)' }}
+            >
+              <div className="bg-[#0a0a0a] rounded-[15px] px-5 py-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#22c55e]/10 flex items-center justify-center">
+                  <span className="text-[14px]">🎯</span>
+                </div>
+                <span className="text-[13px] text-[#888]">Cohort analysis & LTV</span>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="rounded-[16px] p-[1px]"
+              style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%)' }}
+            >
+              <div className="bg-[#0a0a0a] rounded-[15px] px-5 py-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#a78bfa]/10 flex items-center justify-center">
+                  <span className="text-[14px]">⚡</span>
+                </div>
+                <span className="text-[13px] text-[#888]">MMP integration ready</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

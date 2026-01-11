@@ -26,7 +26,7 @@ export function CreatorCard({
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay }}
       className={cn(
-        "relative w-[187px] h-[90px] rounded-[14px] p-[1px]",
+        "relative w-full max-w-[180px] h-[72px] rounded-[12px] p-[1px]",
         "hover:opacity-90 transition-opacity duration-300",
         className
       )}
@@ -35,27 +35,27 @@ export function CreatorCard({
       }}
     >
       {/* Inner content */}
-      <div className="w-full h-full bg-[#111] rounded-[13px] flex items-center gap-4 px-4">
+      <div className="w-full h-full bg-[#111] rounded-[11px] flex items-center gap-3 px-3">
         {/* Avatar */}
-        <div className="relative w-[53px] h-[53px] rounded-full overflow-hidden flex-shrink-0">
+        <div className="relative w-[44px] h-[44px] rounded-full overflow-hidden flex-shrink-0">
           <Image
             src={avatarUrl}
             alt={handle}
             fill
             className="object-cover"
-            sizes="53px"
+            sizes="44px"
           />
         </div>
 
         {/* Info */}
-        <div className="flex flex-col">
+        <div className="flex flex-col min-w-0">
           <span 
-            className="text-white text-[20px] tracking-[-1px] leading-none"
-            style={{ fontWeight: 300 }}
+            className="text-white text-[13px] tracking-[-0.5px] leading-none truncate"
+            style={{ fontWeight: 400 }}
           >
             @{handle}
           </span>
-          <span className="text-[#999] text-[16px] tracking-[-0.8px] leading-none mt-1">
+          <span className="text-[#e97714] text-[11px] tracking-[-0.3px] leading-none mt-1">
             {followers}
           </span>
         </div>
