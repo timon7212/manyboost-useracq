@@ -1,14 +1,26 @@
 import Database from "better-sqlite3";
 import path from "path";
-
-const dbPath = path.join(process.cwd(), "data", "jobs.db");
-
-// Ensure data directory exists
 import fs from "fs";
-const dataDir = path.dirname(dbPath);
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
+
+// Use a fixed path for production, project-relative for development
+const getDbPath = () => {
+  // In production on VPS, use /var/www/manyboost/data/
+  if (process.env.NODE_ENV === "production") {
+    const prodPath = "/var/www/manyboost/data";
+    if (!fs.existsSync(prodPath)) {
+      fs.mkdirSync(prodPath, { recursive: true });
+    }
+    return path.join(prodPath, "manyboost.db");
+  }
+  // In development, use project directory
+  const devPath = path.join(process.cwd(), "data");
+  if (!fs.existsSync(devPath)) {
+    fs.mkdirSync(devPath, { recursive: true });
+  }
+  return path.join(devPath, "manyboost.db");
+};
+
+const dbPath = getDbPath();
 
 const db = new Database(dbPath);
 
