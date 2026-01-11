@@ -116,6 +116,35 @@ function MetricCard({
   );
 }
 
+// Mini sparkline for metrics
+function Sparkline({ color = "#22c55e", trend = "up" }: { color?: string; trend?: "up" | "down" }) {
+  const points = trend === "up" 
+    ? [40, 35, 45, 38, 52, 48, 58, 55, 65, 62, 72, 85]
+    : [70, 65, 60, 55, 52, 48, 45, 42, 38, 35, 32, 28];
+  
+  return (
+    <svg viewBox="0 0 100 40" className="w-[80px] h-[28px]">
+      <defs>
+        <linearGradient id={`sparkGrad-${color.replace('#', '')}`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        d={`M0,${40 - points[0] * 0.4} ${points.map((p, i) => `L${(i / (points.length - 1)) * 100},${40 - p * 0.4}`).join(' ')} L100,40 L0,40 Z`}
+        fill={`url(#sparkGrad-${color.replace('#', '')})`}
+      />
+      <path
+        d={`M0,${40 - points[0] * 0.4} ${points.map((p, i) => `L${(i / (points.length - 1)) * 100},${40 - p * 0.4}`).join(' ')}`}
+        fill="none"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 // Dashboard component
 function DashboardMockup() {
   return (
@@ -124,7 +153,7 @@ function DashboardMockup() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7 }}
-      className="rounded-[20px] p-[1px] max-w-[600px] w-full"
+      className="rounded-[20px] p-[1px] max-w-[620px] w-full"
       style={{
         background: 'linear-gradient(135deg, #252525 0%, #404040 30%, #252525 60%, #404040 100%)',
       }}
@@ -133,75 +162,126 @@ function DashboardMockup() {
         {/* Dashboard header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <p className="text-[12px] text-[#666] uppercase tracking-[0.1em] mb-1">Campaign Performance</p>
-            <p className="text-[14px] text-[#9A9A9A]">Real-time analytics</p>
+            <p className="text-[12px] text-[#666] uppercase tracking-[0.1em] mb-1">Campaign Dashboard</p>
+            <p className="text-[14px] text-[#9A9A9A]">Your performance at a glance</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 bg-[#22c55e]/10 px-3 py-1.5 rounded-full">
             <div className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-            <span className="text-[12px] text-[#22c55e]">Live</span>
+            <span className="text-[11px] text-[#22c55e] font-medium">Live</span>
           </div>
         </div>
 
         {/* Main metrics row */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="bg-[#111] rounded-[12px] p-4">
-            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em] mb-2">Installs</p>
-            <div className="flex items-baseline gap-2">
-              <div className="h-8 w-24 bg-[#1a1a1a] rounded animate-pulse" />
-              <span className="text-[12px] text-[#22c55e] font-medium">↑</span>
+        <div className="grid grid-cols-2 gap-4 mb-5">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="bg-[#111] rounded-[14px] p-4 border border-[#1a1a1a]"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] text-[#666] uppercase tracking-[0.05em]">Installs Today</p>
+              <span className="text-[10px] text-[#22c55e] bg-[#22c55e]/10 px-2 py-0.5 rounded-full">+24%</span>
             </div>
-          </div>
-          <div className="bg-[#111] rounded-[12px] p-4">
-            <p className="text-[11px] text-[#666] uppercase tracking-[0.05em] mb-2">Revenue</p>
-            <div className="flex items-baseline gap-2">
-              <div className="h-8 w-20 bg-[#1a1a1a] rounded animate-pulse" />
-              <span className="text-[12px] text-[#22c55e] font-medium">↑</span>
+            <div className="flex items-end justify-between">
+              <div>
+                <span className="text-[28px] font-semibold text-white tracking-[-0.02em]">2.4K</span>
+                <p className="text-[11px] text-[#555] mt-0.5">vs 1.9K yesterday</p>
+              </div>
+              <Sparkline color="#22c55e" trend="up" />
             </div>
-          </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="bg-[#111] rounded-[14px] p-4 border border-[#1a1a1a]"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] text-[#666] uppercase tracking-[0.05em]">Revenue</p>
+              <span className="text-[10px] text-[#22c55e] bg-[#22c55e]/10 px-2 py-0.5 rounded-full">+18%</span>
+            </div>
+            <div className="flex items-end justify-between">
+              <div>
+                <span className="text-[28px] font-semibold text-white tracking-[-0.02em]">$12.8K</span>
+                <p className="text-[11px] text-[#555] mt-0.5">this week</p>
+              </div>
+              <Sparkline color="#e97714" trend="up" />
+            </div>
+          </motion.div>
         </div>
 
         {/* Chart area */}
-        <div className="bg-[#111] rounded-[12px] p-4 mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="bg-[#111] rounded-[14px] p-4 mb-5 border border-[#1a1a1a]"
+        >
           <div className="flex items-center justify-between mb-4">
-            <p className="text-[12px] text-[#9A9A9A]">Install Growth</p>
+            <div className="flex items-center gap-3">
+              <p className="text-[13px] text-[#ccc] font-medium">Install Growth</p>
+              <span className="text-[10px] text-[#555] bg-[#1a1a1a] px-2 py-0.5 rounded">Last 7 days</span>
+            </div>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full bg-[#e97714]" />
-                <span className="text-[10px] text-[#666]">Current</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#e97714]" />
+                <span className="text-[10px] text-[#666]">ManyBoost</span>
               </div>
-              <div className="flex items-center gap-1">
-                <div className="w-2 h-2 rounded-full bg-[#2a2a2a]" />
-                <span className="text-[10px] text-[#666]">Previous</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
+                <span className="text-[10px] text-[#666]">Other</span>
               </div>
             </div>
           </div>
           <MiniChart />
-        </div>
+          <div className="flex justify-between mt-3 px-1">
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
+              <span key={day} className="text-[9px] text-[#444]">{day}</span>
+            ))}
+          </div>
+        </motion.div>
 
         {/* KPI row - UA manager language */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-1 mb-1">
-              <span className="text-[18px] font-medium text-white">CPI</span>
-              <span className="text-[12px] text-[#22c55e]">↓</span>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.5 }}
+          className="grid grid-cols-3 gap-3"
+        >
+          <div className="bg-[#0a1208] border border-[#22c55e]/20 rounded-[12px] p-3 text-center">
+            <div className="flex items-center justify-center gap-1.5 mb-1">
+              <span className="text-[20px] font-semibold text-white">CPI</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 9V3M6 3L3 6M6 3L9 6" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
             </div>
-            <p className="text-[11px] text-[#666]">Below target</p>
+            <p className="text-[11px] text-[#22c55e] font-medium">Below target</p>
           </div>
-          <div className="text-center border-x border-[#1a1a1a]">
-            <div className="flex items-center justify-center gap-1 mb-1">
-              <span className="text-[18px] font-medium text-[#e97714]">ROAS</span>
-              <span className="text-[12px] text-[#22c55e]">↑</span>
+          <div className="bg-[#140d08] border border-[#e97714]/20 rounded-[12px] p-3 text-center">
+            <div className="flex items-center justify-center gap-1.5 mb-1">
+              <span className="text-[20px] font-semibold text-[#e97714]">ROAS</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 9V3M6 3L3 6M6 3L9 6" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
             </div>
-            <p className="text-[11px] text-[#666]">Above target</p>
+            <p className="text-[11px] text-[#e97714] font-medium">142% of goal</p>
           </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-1 mb-1">
-              <span className="text-[18px] font-medium text-white">D7</span>
-              <span className="text-[12px] text-[#22c55e]">↑</span>
+          <div className="bg-[#0a0a14] border border-[#a78bfa]/20 rounded-[12px] p-3 text-center">
+            <div className="flex items-center justify-center gap-1.5 mb-1">
+              <span className="text-[20px] font-semibold text-white">D7</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M6 9V3M6 3L3 6M6 3L9 6" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
             </div>
-            <p className="text-[11px] text-[#666]">Strong retention</p>
+            <p className="text-[11px] text-[#a78bfa] font-medium">Strong retention</p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
