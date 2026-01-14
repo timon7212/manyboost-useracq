@@ -187,7 +187,7 @@ function DesktopTrafficFlow() {
         className="flex flex-col items-center min-w-[180px]"
       >
         <div className="flex gap-2">
-          {[0, 1, 2].map((idx) => (
+          {['/HeroApps.png', '/HeroApps1.png', '/HeroApps2.png'].map((src, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 15 }}
@@ -199,7 +199,7 @@ function DesktopTrafficFlow() {
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }}
               >
                 <Image
-                  src="/HeroApps.png"
+                  src={src}
                   alt="Game"
                   width={68}
                   height={68}
@@ -272,14 +272,14 @@ function MobileTrafficFlow() {
         className="flex flex-col items-center"
       >
         <div className="flex gap-2">
-          {[0, 1, 2].map((idx) => (
+          {['/HeroApps.png', '/HeroApps1.png', '/HeroApps2.png'].map((src, idx) => (
             <motion.div
               key={idx}
               animate={{ y: [0, -2, 0] }}
               transition={{ duration: 2, repeat: Infinity, delay: idx * 0.15 }}
             >
               <Image
-                src="/HeroApps.png"
+                src={src}
                 alt="Game"
                 width={52}
                 height={52}
