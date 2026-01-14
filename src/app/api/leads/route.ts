@@ -4,7 +4,7 @@ import { Resend } from "resend";
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Email notification for new leads
+// Email notification for new leads (to team)
 async function sendLeadNotification(lead: {
   type: string;
   name: string;
@@ -23,7 +23,7 @@ async function sendLeadNotification(lead: {
 
   const typeLabel = typeLabels[lead.type] || lead.type;
   
-  // Build email content
+  // Build email content for team
   let details = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: linear-gradient(135deg, #e97714 0%, #d16a10 100%); padding: 24px; border-radius: 12px 12px 0 0;">
@@ -107,16 +107,148 @@ async function sendLeadNotification(lead: {
   `;
 
   try {
+    // Send notification to team
     await resend.emails.send({
       from: "ManyBoost Leads <leads@manyboost.io>",
-      to: ["sales@manyboost.io"],
+      to: ["busdev@manyboost.io"],
       subject: `🔥 New ${typeLabel} Lead: ${lead.name}${lead.company ? ` (${lead.company})` : ''}`,
       html: details,
     });
-    console.log(`✅ Lead notification sent to sales@manyboost.io for ${lead.name}`);
+    console.log(`✅ Lead notification sent to busdev@manyboost.io for ${lead.name}`);
   } catch (error) {
     console.error("❌ Failed to send lead notification:", error);
-    // Don't throw - we still want to save the lead even if email fails
+  }
+}
+
+// Confirmation email to the lead (auto-reply)
+async function sendConfirmationToLead(lead: {
+  type: string;
+  name: string;
+  email: string;
+  company: string | null;
+}) {
+  const firstName = lead.name.split(' ')[0];
+  
+  const typeMessages: Record<string, { title: string; message: string }> = {
+    advertiser: {
+      title: "Let's Scale Your User Acquisition",
+      message: "We're excited to learn more about your UA goals. Our team specializes in delivering high-quality, engaged users through our network of 200+ premium publishers.",
+    },
+    publisher: {
+      title: "Welcome to ManyBoost Publishers",
+      message: "Thank you for your interest in monetizing with ManyBoost. Our premium offerwall delivers industry-leading eCPMs with quality offers from top game studios.",
+    },
+    creator: {
+      title: "Join the ManyBoost Creator Network",
+      message: "We're thrilled you want to join our creator community! We work with gaming creators to deliver authentic, engaging campaigns that benefit both you and your audience.",
+    },
+  };
+
+  const content = typeMessages[lead.type] || typeMessages.advertiser;
+
+  const confirmationHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #000;">
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; max-width: 600px; margin: 0 auto; background: #000;">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #0a0a0a 0%, #111 100%); padding: 40px 32px; text-align: center; border-bottom: 1px solid #222;">
+          <img src="https://manyboost.io/favicon.png" alt="ManyBoost" width="48" height="48" style="margin-bottom: 16px; border-radius: 12px;">
+          <h1 style="color: #fff; margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.5px;">
+            <span style="color: #e97714;">many</span>boost
+          </h1>
+        </div>
+
+        <!-- Main Content -->
+        <div style="padding: 48px 32px; background: #0a0a0a;">
+          <h2 style="color: #fff; margin: 0 0 8px 0; font-size: 24px; font-weight: 600;">
+            Hi ${firstName}! 👋
+          </h2>
+          <h3 style="color: #e97714; margin: 0 0 24px 0; font-size: 18px; font-weight: 500;">
+            ${content.title}
+          </h3>
+          
+          <p style="color: #999; font-size: 15px; line-height: 1.7; margin: 0 0 24px 0;">
+            Thank you for reaching out to ManyBoost! We've received your inquiry and our team is reviewing it now.
+          </p>
+          
+          <p style="color: #999; font-size: 15px; line-height: 1.7; margin: 0 0 32px 0;">
+            ${content.message}
+          </p>
+
+          <!-- What's Next Box -->
+          <div style="background: #111; border: 1px solid #222; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+            <h4 style="color: #fff; margin: 0 0 16px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">
+              ⚡ What happens next?
+            </h4>
+            <ul style="color: #888; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
+              <li>Our team will review your inquiry within <strong style="color: #fff;">24 hours</strong></li>
+              <li>A dedicated account manager will reach out to you</li>
+              <li>We'll schedule a call to discuss your specific needs</li>
+            </ul>
+          </div>
+
+          <!-- Stats -->
+          <div style="display: flex; justify-content: space-between; text-align: center; margin-bottom: 32px;">
+            <div style="flex: 1;">
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">200+</p>
+              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">Publishers</p>
+            </div>
+            <div style="flex: 1;">
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">11M+</p>
+              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">MAU Worldwide</p>
+            </div>
+            <div style="flex: 1;">
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">50+</p>
+              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">Countries</p>
+            </div>
+          </div>
+
+          <p style="color: #666; font-size: 14px; line-height: 1.6; margin: 0;">
+            In the meantime, feel free to reply to this email if you have any questions.
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <div style="padding: 32px; background: #050505; border-top: 1px solid #1a1a1a; text-align: center;">
+          <p style="color: #888; font-size: 14px; margin: 0 0 16px 0;">
+            Looking forward to working with you!
+          </p>
+          <p style="color: #e97714; font-size: 14px; font-weight: 600; margin: 0 0 24px 0;">
+            — The ManyBoost Team
+          </p>
+          
+          <div style="margin-bottom: 16px;">
+            <a href="https://manyboost.io" style="color: #666; text-decoration: none; font-size: 13px; margin: 0 12px;">Website</a>
+            <a href="https://www.linkedin.com/company/110627158" style="color: #666; text-decoration: none; font-size: 13px; margin: 0 12px;">LinkedIn</a>
+            <a href="mailto:busdev@manyboost.io" style="color: #666; text-decoration: none; font-size: 13px; margin: 0 12px;">Contact</a>
+          </div>
+          
+          <p style="color: #444; font-size: 11px; margin: 0;">
+            © ${new Date().getFullYear()} ManyBoost. Dubai, UAE.
+          </p>
+        </div>
+        
+      </div>
+    </body>
+    </html>
+  `;
+
+  try {
+    await resend.emails.send({
+      from: "ManyBoost <hello@manyboost.io>",
+      to: [lead.email],
+      subject: `Thanks for reaching out, ${firstName}! We'll be in touch soon 🚀`,
+      html: confirmationHtml,
+    });
+    console.log(`✅ Confirmation email sent to ${lead.email}`);
+  } catch (error) {
+    console.error("❌ Failed to send confirmation email:", error);
   }
 }
 
@@ -164,7 +296,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Always send email notification (both dev and prod)
+    // Send email notification to team (both dev and prod)
     await sendLeadNotification({
       type,
       name,
@@ -174,6 +306,14 @@ export async function POST(request: NextRequest) {
       followers: followers || null,
       monthly_traffic: monthly_traffic || null,
       budget: budget || null,
+    });
+
+    // Send confirmation email to the lead
+    await sendConfirmationToLead({
+      type,
+      name,
+      email,
+      company: company || null,
     });
 
     if (process.env.NODE_ENV === "development") {
