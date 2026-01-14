@@ -60,11 +60,11 @@ export function Footer() {
                   For Advertisers
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/creators" className="text-[14px] text-[#666] hover:text-white transition-colors">
                   For Creators
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/offerwall" className="text-[14px] text-[#666] hover:text-white transition-colors">
                   For Publishers

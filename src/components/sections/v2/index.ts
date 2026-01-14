@@ -1,0 +1,9 @@
+export { HeroSectionV2 } from "./hero-section-v2";
+export { StatsBannerV2 } from "./stats-banner-v2";
+export { AdvantagesSectionV2 } from "./advantages-section-v2";
+export { TrafficTypesSectionV2 } from "./traffic-types-section-v2";
+export { IntegrationsSectionV2 } from "./integrations-section-v2";
+export { AntifraudSectionV2 } from "./antifraud-section-v2";
+export { CaseStudiesSectionV2 } from "./case-studies-section-v2";
+export { CreatorNetworkSectionV2 } from "./creator-network-section-v2";
+export { CtaSectionV2 } from "./cta-section-v2";

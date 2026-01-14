@@ -239,3 +239,30 @@ p {
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+
+/* Selection styling */
+::selection {
+  background: rgba(233, 119, 20, 0.3);
+  color: #fff;
+}
+
+/* Smooth scroll for Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}

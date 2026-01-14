@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -116,6 +117,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://manyboost.io" />
       </head>
       <body className="antialiased">
+        <SmoothScroll />
         {children}
       </body>
     </html>

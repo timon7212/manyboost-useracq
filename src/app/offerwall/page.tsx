@@ -50,40 +50,177 @@ function useCounter(end: number, duration: number = 2000) {
   return { count, ref };
 }
 
-// Stats component
-function StatCard({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) {
-  const { count, ref } = useCounter(value, 1500);
-  
+// Hero Visual Component - Revenue Flow
+function RevenueFlowVisual() {
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="text-center"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="relative w-full max-w-[700px] mx-auto mt-12 md:mt-16"
     >
-      <p className="text-[40px] md:text-[56px] font-medium tracking-[-0.03em] text-white leading-none">
-        {count}{suffix}
-      </p>
-      <p className="text-[14px] text-[#666] mt-2 uppercase tracking-[0.1em]">{label}</p>
+      <div className="flex items-center justify-center gap-6 md:gap-10">
+        {/* Your App */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex flex-col items-center"
+        >
+          <motion.div
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-[70px] h-[70px] md:w-[90px] md:h-[90px] rounded-[18px] bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#333] flex items-center justify-center shadow-xl"
+          >
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="1.5">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <line x1="12" y1="18" x2="12" y2="18.01" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </motion.div>
+          <p className="text-[12px] text-[#666] mt-3 font-medium">Your App</p>
+        </motion.div>
+
+        {/* Arrow + Offerwall */}
+        <div className="flex items-center gap-4 md:gap-6">
+          <motion.svg 
+            width="40" height="24" viewBox="0 0 40 24" fill="none"
+            animate={{ x: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <path d="M0 12H30M30 12L22 5M30 12L22 19" stroke="#333" strokeWidth="2" strokeLinecap="round"/>
+          </motion.svg>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="relative"
+          >
+            <motion.div
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-[22px] bg-gradient-to-br from-[#22c55e]/20 to-[#16a34a]/10 border border-[#22c55e]/30 flex items-center justify-center shadow-2xl shadow-[#22c55e]/10"
+            >
+              <div className="text-center">
+                <p className="text-[22px] md:text-[26px] font-bold text-[#22c55e]">OW</p>
+                <p className="text-[9px] text-[#666] uppercase tracking-wider">Offerwall</p>
+              </div>
+            </motion.div>
+            {/* Glow effect */}
+            <div className="absolute inset-0 rounded-[22px] bg-[#22c55e]/5 blur-xl -z-10" />
+          </motion.div>
+
+          <motion.svg 
+            width="40" height="24" viewBox="0 0 40 24" fill="none"
+            animate={{ x: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
+          >
+            <path d="M0 12H30M30 12L22 5M30 12L22 19" stroke="#22c55e" strokeWidth="2" strokeLinecap="round"/>
+          </motion.svg>
+        </div>
+
+        {/* Revenue */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex flex-col items-center"
+        >
+          <motion.div
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="w-[70px] h-[70px] md:w-[90px] md:h-[90px] rounded-full bg-gradient-to-br from-[#22c55e]/20 to-[#16a34a]/10 border border-[#22c55e]/40 flex items-center justify-center shadow-xl"
+          >
+            <span className="text-[28px] md:text-[32px]">💰</span>
+          </motion.div>
+          <p className="text-[12px] text-[#22c55e] mt-3 font-semibold">Revenue</p>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }
 
-// Feature card
-function FeatureCard({ 
+// Integration Card Component
+function IntegrationCard({ 
   icon, 
   title, 
   description, 
+  features,
   delay,
-  highlight = false 
+  highlighted = false 
 }: { 
-  icon: React.ReactNode; 
-  title: string; 
-  description: string; 
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  features: string[];
   delay: number;
-  highlight?: boolean;
+  highlighted?: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      className={`
+        rounded-[24px] p-[1px] h-full
+        ${highlighted 
+          ? 'bg-gradient-to-br from-[#22c55e] via-[#16a34a] to-[#22c55e]' 
+          : 'bg-gradient-to-br from-[#222] via-[#333] to-[#222]'
+        }
+      `}
+    >
+      <div className={`
+        rounded-[23px] p-6 md:p-8 h-full flex flex-col
+        ${highlighted ? 'bg-gradient-to-br from-[#0a1a0f] to-[#050a05]' : 'bg-[#0a0a0a]'}
+      `}>
+        {highlighted && (
+          <div className="inline-flex items-center gap-1.5 bg-[#22c55e]/10 border border-[#22c55e]/20 rounded-full px-3 py-1 mb-4 w-fit">
+            <span className="text-[10px] text-[#22c55e] font-medium uppercase tracking-wider">Most Popular</span>
+          </div>
+        )}
+        
+        <div className={`
+          w-14 h-14 rounded-[14px] flex items-center justify-center mb-5
+          ${highlighted ? 'bg-[#22c55e]/15 text-[#22c55e]' : 'bg-[#1a1a1a] text-[#666]'}
+        `}>
+          {icon}
+        </div>
+        
+        <h3 className="text-[22px] md:text-[26px] font-medium tracking-[-0.02em] text-white mb-2">
+          {title}
+        </h3>
+        
+        <p className="text-[14px] text-[#666] leading-[1.6] mb-6">
+          {description}
+        </p>
+        
+        <div className="mt-auto space-y-3">
+          {features.map((feature, idx) => (
+            <div key={idx} className="flex items-center gap-2.5">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={highlighted ? "#22c55e" : "#555"} strokeWidth="2">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              <span className="text-[13px] text-[#888]">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// How It Works Step
+function WorkflowStep({ 
+  number, 
+  title, 
+  description, 
+  delay 
+}: { 
+  number: string;
+  title: string;
+  description: string;
+  delay: number;
 }) {
   return (
     <motion.div
@@ -91,53 +228,62 @@ function FeatureCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      className="rounded-[20px] p-[1px]"
-      style={{
-        background: highlight 
-          ? 'linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #22c55e 100%)' 
-          : 'linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%)',
-      }}
+      className="flex flex-col items-center text-center"
     >
-      <div className={`
-        rounded-[19px] p-6 md:p-8 h-full
-        ${highlight ? 'bg-gradient-to-br from-[#0a1a0a] to-[#0a0a0a]' : 'bg-[#0a0a0a]'}
-      `}>
-        <div className={`
-          w-14 h-14 rounded-[14px] flex items-center justify-center mb-5
-          ${highlight ? 'bg-[#22c55e]/10 text-[#22c55e]' : 'bg-[#1a1a1a] text-[#666]'}
-        `}>
-          {icon}
+      <div className="relative mb-4">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 flex items-center justify-center border border-[#22c55e]/20">
+          <span className="text-[24px] font-bold text-[#22c55e]">{number}</span>
         </div>
-        <h3 className={`
-          text-[22px] md:text-[26px] font-medium tracking-[-0.02em] mb-3
-          ${highlight ? 'text-white' : 'text-[#ccc]'}
-        `}>
-          {title}
-        </h3>
-        <p className="text-[14px] md:text-[15px] text-[#666] leading-[1.6]">
-          {description}
-        </p>
       </div>
+      <h3 className="text-[18px] md:text-[20px] font-medium text-white mb-2">{title}</h3>
+      <p className="text-[13px] md:text-[14px] text-[#666] leading-[1.5] max-w-[200px]">{description}</p>
     </motion.div>
   );
 }
 
-// Integration badge
-function IntegrationBadge({ name, icon, delay }: { name: string; icon: React.ReactNode; delay: number }) {
+// Benefit Card for Bento Grid
+function BenefitCard({ 
+  icon, 
+  title, 
+  description, 
+  stat,
+  statLabel,
+  delay,
+  className = ""
+}: { 
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  stat?: string;
+  statLabel?: string;
+  delay: number;
+  className?: string;
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay }}
-      className="rounded-[12px] p-[1px]"
-      style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)' }}
+      transition={{ duration: 0.5, delay }}
+      className={`
+        rounded-[20px] p-[1px] bg-gradient-to-br from-[#1a1a1a] via-[#252525] to-[#1a1a1a]
+        ${className}
+      `}
     >
-      <div className="bg-[#0a0a0a] rounded-[11px] px-5 py-3 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-[#1a1a1a] flex items-center justify-center text-[#666]">
+      <div className="rounded-[19px] p-6 md:p-7 bg-[#0a0a0a] h-full flex flex-col">
+        <div className="w-12 h-12 rounded-[12px] bg-[#22c55e]/10 flex items-center justify-center mb-4 text-[#22c55e]">
           {icon}
         </div>
-        <span className="text-[15px] text-[#999] font-medium">{name}</span>
+        
+        <h3 className="text-[18px] md:text-[20px] font-medium text-white mb-2">{title}</h3>
+        <p className="text-[13px] text-[#666] leading-[1.6] mb-4">{description}</p>
+        
+        {stat && (
+          <div className="mt-auto pt-4 border-t border-[#1a1a1a]">
+            <p className="text-[28px] font-bold text-[#22c55e]">{stat}</p>
+            <p className="text-[11px] text-[#555] uppercase tracking-wider">{statLabel}</p>
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -146,22 +292,34 @@ function IntegrationBadge({ name, icon, delay }: { name: string; icon: React.Rea
 export default function OfferwallPage() {
   const [leadModalOpen, setLeadModalOpen] = useState(false);
   
+  // Counter refs
+  const ecpmRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLDivElement>(null);
+  const advertisersRef = useRef<HTMLDivElement>(null);
+  const countriesRef = useRef<HTMLDivElement>(null);
+  
+  const ecpm = useCounter(45, 1500);
+  const fill = useCounter(98, 1500);
+  const advertisers = useCounter(200, 1500);
+  const countries = useCounter(50, 1500);
+  
   return (
     <>
       <Header />
       <LeadModal isOpen={leadModalOpen} onClose={() => setLeadModalOpen(false)} type="publisher" />
       <main className="min-h-screen bg-black overflow-x-hidden">
-        {/* Hero Section */}
-        <section className="relative pt-20 md:pt-32 pb-16 md:pb-24 px-4 overflow-hidden">
-          {/* Background */}
+        
+        {/* ===== HERO SECTION ===== */}
+        <section className="relative pt-32 md:pt-40 pb-16 md:pb-20 px-4 overflow-hidden">
+          {/* Background gradient */}
           <div className="absolute inset-0 pointer-events-none">
             <div 
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] opacity-40"
-              style={{ background: 'radial-gradient(ellipse at center top, rgba(34, 197, 94, 0.12) 0%, transparent 50%)' }}
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[1400px] h-[900px] opacity-40"
+              style={{ background: 'radial-gradient(ellipse at center top, rgba(34, 197, 94, 0.15) 0%, transparent 55%)' }}
             />
           </div>
 
-          <div className="max-w-[840px] mx-auto text-center relative z-10">
+          <div className="max-w-[900px] mx-auto text-center relative z-10">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -170,327 +328,447 @@ export default function OfferwallPage() {
               className="inline-flex items-center gap-2 bg-[#22c55e]/10 border border-[#22c55e]/20 rounded-full px-4 py-2 mb-6"
             >
               <div className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
-              <span className="text-[13px] text-[#22c55e] font-medium">For Publishers</span>
+              <span className="text-[12px] text-[#22c55e] font-medium uppercase tracking-wider">For Publishers</span>
             </motion.div>
 
-            {/* Title */}
+            {/* Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-[36px] sm:text-[48px] md:text-[64px] tracking-[-0.05em] leading-[0.9] mb-6 font-medium"
+              className="text-[36px] sm:text-[50px] md:text-[66px] lg:text-[76px] tracking-[-0.04em] leading-[1] mb-6 font-medium"
             >
-              <span className="text-white">Monetize with</span>
+              <span className="text-white">Maximize Revenue</span>
               <br />
+              <span className="text-white">with </span>
               <span className="text-[#22c55e]">Premium Offerwalls</span>
             </motion.h1>
 
-            {/* Subtitle */}
+            {/* Subheadline */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[16px] md:text-[20px] text-[#666] max-w-[560px] mx-auto mb-10 tracking-[-0.02em] leading-[1.5]"
+              className="text-[16px] md:text-[19px] text-[#777] max-w-[600px] mx-auto mb-8 leading-[1.6]"
             >
-              Turn your app&apos;s engaged users into revenue. High eCPM offers from top game studios, seamless SDK integration.
+              Turn every user into revenue. High eCPMs from premium game studios, 
+              seamless integration, and weekly payouts.
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              className="flex justify-center"
             >
-              <button 
+              <motion.button 
                 onClick={() => setLeadModalOpen(true)}
-                className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-medium rounded-full text-[16px] transition-colors duration-200"
+                className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-semibold rounded-full text-[15px] transition-all duration-200 shadow-lg shadow-[#22c55e]/25"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Start Monetizing
-              </button>
-              <a 
-                href="mailto:sales@manyboost.io"
-                className="px-8 py-4 bg-transparent border border-[#333] hover:border-[#555] text-white font-medium rounded-full text-[16px] transition-colors duration-200"
-              >
-                Contact Sales
-              </a>
+                Start Monetizing →
+              </motion.button>
             </motion.div>
-          </div>
-        </section>
 
-        {/* Stats Section */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-[840px] mx-auto">
-            <div 
-              className="rounded-[24px] p-[1px]"
-              style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #333 50%, #1a1a1a 100%)' }}
-            >
-              <div className="bg-[#080808] rounded-[23px] py-10 md:py-14 px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
-                  <StatCard value={45} suffix="$" label="Avg eCPM" delay={0.1} />
-                  <StatCard value={98} suffix="%" label="Fill Rate" delay={0.2} />
-                  <StatCard value={200} suffix="+" label="Advertisers" delay={0.3} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How it Works */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-[840px] mx-auto">
+            {/* Trust points */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12 md:mb-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap items-center justify-center gap-6 mt-8 text-[12px] text-[#555]"
             >
-              <h2 className="text-[36px] sm:text-[48px] md:text-[59px] tracking-[-0.05em] leading-[0.86] mb-4 font-medium">
-                <span className="text-[#22c55e]">Simple</span>
-                <span className="text-[#9A9A9A] font-light"> Integration</span>
-              </h2>
-              <p className="text-[16px] md:text-[18px] text-[#666] max-w-[480px] mx-auto">
-                Get up and running in minutes. Our SDK handles everything.
-              </p>
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>5-Minute Setup</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>NET-7 Payouts</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>No Minimum</span>
+              </div>
             </motion.div>
 
-            {/* Flow */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Step 1 */}
+            {/* Visual */}
+            <RevenueFlowVisual />
+          </div>
+        </section>
+
+        {/* ===== STATS BANNER ===== */}
+        <section className="py-14 md:py-20 px-4 border-y border-[#1a1a1a] bg-[#050505]">
+          <div className="max-w-[1000px] mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
               <motion.div
+                ref={ecpm.ref}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#22c55e]/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[24px] font-medium text-[#22c55e]">1</span>
-                </div>
-                <h3 className="text-[20px] font-medium text-white mb-2">Add SDK</h3>
-                <p className="text-[14px] text-[#666]">Drop-in SDK for Unity, iOS, Android. 5 lines of code.</p>
+                <p className="text-[36px] md:text-[48px] font-bold text-white leading-none">
+                  ${ecpm.count}
+                </p>
+                <p className="text-[12px] text-[#666] mt-2 uppercase tracking-wider">Avg eCPM</p>
               </motion.div>
-
-              {/* Arrow */}
-              <div className="hidden md:flex items-center justify-center">
-                <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
-                  <path d="M0 12H50M50 12L40 4M50 12L40 20" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-
-              {/* Step 2 */}
+              
               <motion.div
+                ref={fill.ref}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="text-center"
+              >
+                <p className="text-[36px] md:text-[48px] font-bold text-white leading-none">
+                  {fill.count}%
+                </p>
+                <p className="text-[12px] text-[#666] mt-2 uppercase tracking-wider">Fill Rate</p>
+              </motion.div>
+              
+              <motion.div
+                ref={advertisers.ref}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#22c55e]/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[24px] font-medium text-[#22c55e]">2</span>
-                </div>
-                <h3 className="text-[20px] font-medium text-white mb-2">Show Offerwall</h3>
-                <p className="text-[14px] text-[#666]">Users see premium offers from top game studios.</p>
+                <p className="text-[36px] md:text-[48px] font-bold text-white leading-none">
+                  {advertisers.count}+
+                </p>
+                <p className="text-[12px] text-[#666] mt-2 uppercase tracking-wider">Advertisers</p>
               </motion.div>
-
-              {/* Arrow */}
-              <div className="hidden md:flex items-center justify-center">
-                <svg width="60" height="24" viewBox="0 0 60 24" fill="none">
-                  <path d="M0 12H50M50 12L40 4M50 12L40 20" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-
-              {/* Step 3 */}
+              
               <motion.div
+                ref={countries.ref}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-[#22c55e]/10 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[24px] font-medium text-[#22c55e]">3</span>
-                </div>
-                <h3 className="text-[20px] font-medium text-white mb-2">Get Paid</h3>
-                <p className="text-[14px] text-[#666]">Weekly payouts. NET-7 terms. No minimums.</p>
+                <p className="text-[36px] md:text-[48px] font-bold text-white leading-none">
+                  {countries.count}+
+                </p>
+                <p className="text-[12px] text-[#666] mt-2 uppercase tracking-wider">Countries</p>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Why ManyBoost */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-[840px] mx-auto">
+        {/* ===== INTEGRATION OPTIONS ===== */}
+        <section className="py-20 md:py-28 px-4">
+          <div className="max-w-[1100px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12 md:mb-16"
+              className="text-center mb-14"
             >
-              <h2 className="text-[36px] sm:text-[48px] md:text-[59px] tracking-[-0.05em] leading-[0.86] mb-4 font-medium">
-                <span className="text-[#9A9A9A] font-light">Why </span>
-                <span className="text-[#22c55e]">ManyBoost</span>
+              <p className="text-[12px] text-[#22c55e] font-medium uppercase tracking-wider mb-3">Integration Options</p>
+              <h2 className="text-[32px] sm:text-[42px] md:text-[52px] tracking-[-0.04em] leading-[1.1] mb-4 font-medium">
+                <span className="text-white">Choose Your </span>
+                <span className="text-[#22c55e]">Integration</span>
               </h2>
-              <p className="text-[16px] md:text-[18px] text-[#666] max-w-[480px] mx-auto">
+              <p className="text-[15px] md:text-[17px] text-[#666] max-w-[500px] mx-auto">
+                Flexible options to fit your tech stack. Get up and running in minutes.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <IntegrationCard
+                icon={
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
+                  </svg>
+                }
+                title="Web Offerwall"
+                description="Embed our offerwall directly into your website or web app with a simple iframe or JavaScript snippet."
+                features={[
+                  "One-line embed code",
+                  "Fully customizable design",
+                  "Real-time callbacks",
+                  "Mobile responsive"
+                ]}
+                delay={0.1}
+              />
+              
+              <IntegrationCard
+                icon={
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="5" y="2" width="14" height="20" rx="2" />
+                    <path d="M12 18h.01" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                }
+                title="Native SDK"
+                description="Lightweight SDKs for Unity, iOS, and Android. Native performance with full platform integration."
+                features={[
+                  "Unity, iOS, Android",
+                  "< 100KB SDK size",
+                  "Native UI components",
+                  "Offline caching"
+                ]}
+                delay={0.15}
+                highlighted
+              />
+              
+              <IntegrationCard
+                icon={
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M4 6l4 4-4 4" />
+                    <path d="M12 14h8" />
+                  </svg>
+                }
+                title="REST API"
+                description="Build your own offerwall experience with our comprehensive API. Full control, maximum flexibility."
+                features={[
+                  "RESTful endpoints",
+                  "S2S postbacks",
+                  "Webhook events",
+                  "Full documentation"
+                ]}
+                delay={0.2}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ===== HOW IT WORKS ===== */}
+        <section className="py-20 md:py-28 px-4 bg-[#050505]">
+          <div className="max-w-[1100px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <p className="text-[12px] text-[#22c55e] font-medium uppercase tracking-wider mb-3">How It Works</p>
+              <h2 className="text-[32px] sm:text-[42px] md:text-[52px] tracking-[-0.04em] leading-[1.1] mb-4 font-medium">
+                <span className="text-white">Start Earning in </span>
+                <span className="text-[#22c55e]">5 Steps</span>
+              </h2>
+              <p className="text-[15px] md:text-[17px] text-[#666] max-w-[480px] mx-auto">
+                Simple integration process. Most publishers go live within 24 hours.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4">
+              <WorkflowStep
+                number="01"
+                title="Sign Up"
+                description="Create your free account in under a minute."
+                delay={0.1}
+              />
+              <WorkflowStep
+                number="02"
+                title="Add Your App"
+                description="Register your app and get your unique publisher ID."
+                delay={0.15}
+              />
+              <WorkflowStep
+                number="03"
+                title="Integrate"
+                description="Add our SDK or embed code to your app."
+                delay={0.2}
+              />
+              <WorkflowStep
+                number="04"
+                title="Go Live"
+                description="Users start seeing premium offers instantly."
+                delay={0.25}
+              />
+              <WorkflowStep
+                number="05"
+                title="Get Paid"
+                description="Weekly payouts via wire, PayPal, or crypto."
+                delay={0.3}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ===== WHY MANYBOOST - BENTO GRID ===== */}
+        <section className="py-20 md:py-28 px-4">
+          <div className="max-w-[1100px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-14"
+            >
+              <p className="text-[12px] text-[#22c55e] font-medium uppercase tracking-wider mb-3">Why ManyBoost</p>
+              <h2 className="text-[32px] sm:text-[42px] md:text-[52px] tracking-[-0.04em] leading-[1.1] mb-4 font-medium">
+                <span className="text-white">Built for </span>
+                <span className="text-[#22c55e]">Publishers</span>
+              </h2>
+              <p className="text-[15px] md:text-[17px] text-[#666] max-w-[500px] mx-auto">
                 Not just another offerwall. Premium offers, better UX, higher revenue.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <FeatureCard
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <BenefitCard
                 icon={
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M14 4V24M4 14H24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                    <circle cx="14" cy="14" r="8" stroke="currentColor" strokeWidth="2"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
                   </svg>
                 }
-                title="Higher eCPM"
-                description="Premium advertisers pay premium rates. Our creator-driven model means higher engagement and better payouts for you."
+                title="Highest eCPMs"
+                description="Premium advertisers pay premium rates. Our creator-driven model means higher engagement and better payouts."
+                stat="$45+"
+                statLabel="Average eCPM"
                 delay={0.1}
-                highlight
               />
-              <FeatureCard
+              
+              <BenefitCard
                 icon={
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <rect x="4" y="6" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M4 10H24" stroke="currentColor" strokeWidth="2"/>
-                    <circle cx="8" cy="16" r="2" fill="currentColor"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                }
+                title="Fast Payouts"
+                description="NET-7 payment terms. Get paid every week via wire transfer, PayPal, or cryptocurrency."
+                stat="NET-7"
+                statLabel="Payment Terms"
+                delay={0.15}
+              />
+              
+              <BenefitCard
+                icon={
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                }
+                title="Quality Offers"
+                description="Curated offers from verified game studios only. No scams, no low-quality apps. Your users deserve the best."
+                stat="200+"
+                statLabel="Premium Advertisers"
+                delay={0.2}
+              />
+              
+              <BenefitCard
+                icon={
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
                   </svg>
                 }
                 title="Real-time Dashboard"
                 description="Track impressions, completions, and revenue in real-time. Detailed analytics by country, device, and offer."
-                delay={0.15}
-              />
-              <FeatureCard
-                icon={
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M14 4L4 9V14C4 20 8 25 14 26C20 25 24 20 24 14V9L14 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
-                    <path d="M10 14L13 17L18 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                }
-                title="Quality Offers Only"
-                description="Curated offers from verified game studios. No scams, no low-quality apps. Your users deserve the best."
-                delay={0.2}
-              />
-              <FeatureCard
-                icon={
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M14 8V14L18 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                }
-                title="Fast Payouts"
-                description="NET-7 payment terms. Get paid every week via wire, PayPal, or crypto. No minimum threshold."
                 delay={0.25}
               />
-            </div>
-          </div>
-        </section>
-
-        {/* Integrations */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-[840px] mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-10"
-            >
-              <h2 className="text-[28px] md:text-[36px] tracking-[-0.03em] mb-3 font-medium text-white">
-                Works with your stack
-              </h2>
-              <p className="text-[15px] text-[#666]">Native SDKs for all major platforms</p>
-            </motion.div>
-
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <IntegrationBadge 
-                name="Unity" 
-                delay={0.1}
+              
+              <BenefitCard
                 icon={
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                    <path d="M15.75 9L12.375 14.625L11.25 11.25L14.625 9L11.25 6.75L12.375 3.375L15.75 9ZM10.125 11.25L11.25 14.625H8.25L6 11.25H9L10.125 11.25ZM10.125 6.75H6L8.25 3.375H11.25L10.125 6.75ZM2.25 9L5.625 3.375L6.75 6.75L3.375 9L6.75 11.25L5.625 14.625L2.25 9Z"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
                   </svg>
                 }
-              />
-              <IntegrationBadge 
-                name="iOS Swift" 
-                delay={0.15}
-                icon={
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                    <path d="M14.94 13.5c-.54 1.17-1.17 2.25-2.16 2.25-.99 0-1.26-.63-2.34-.63-1.08 0-1.44.63-2.34.63-1.08 0-1.89-1.17-2.43-2.34C4.32 10.5 4.05 7.47 5.4 5.67c.99-1.35 2.43-2.16 3.78-2.16 1.08 0 1.89.72 2.79.72.9 0 1.53-.72 2.88-.72 1.17 0 2.43.63 3.33 1.8-2.88 1.62-2.43 5.76.54 6.93-.45 1.08-.99 2.07-1.78 3.06z"/>
-                  </svg>
-                }
-              />
-              <IntegrationBadge 
-                name="Android" 
-                delay={0.2}
-                icon={
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                    <path d="M3 6v7.5c0 .825.675 1.5 1.5 1.5h.75v2.25c0 .45.3.75.75.75s.75-.3.75-.75V15h4.5v2.25c0 .45.3.75.75.75s.75-.3.75-.75V15h.75c.825 0 1.5-.675 1.5-1.5V6H3zm-1.5.75c0-.45-.3-.75-.75-.75s-.75.3-.75.75v4.5c0 .45.3.75.75.75s.75-.3.75-.75v-4.5zm15 0c0-.45-.3-.75-.75-.75s-.75.3-.75.75v4.5c0 .45.3.75.75.75s.75-.3.75-.75v-4.5zM11.25 1.5l.9-1.35c.075-.15 0-.3-.15-.375-.15-.075-.3 0-.375.15L10.65 1.5c-.6-.225-1.275-.375-1.95-.375s-1.35.15-1.95.375L5.775-.075c-.075-.15-.225-.225-.375-.15-.15.075-.225.225-.15.375L6.15 1.5C4.8 2.25 3.9 3.6 3.75 5.25h10.5c-.15-1.65-1.05-3-2.4-3.75zM6.75 3.75c-.3 0-.525-.225-.525-.525s.225-.525.525-.525.525.225.525.525-.225.525-.525.525zm4.5 0c-.3 0-.525-.225-.525-.525s.225-.525.525-.525.525.225.525.525-.225.525-.525.525z"/>
-                  </svg>
-                }
-              />
-              <IntegrationBadge 
-                name="React Native" 
-                delay={0.25}
-                icon={
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-                    <circle cx="9" cy="9" r="2"/>
-                    <ellipse cx="9" cy="9" rx="7" ry="3" stroke="currentColor" strokeWidth="1" fill="none"/>
-                    <ellipse cx="9" cy="9" rx="7" ry="3" stroke="currentColor" strokeWidth="1" fill="none" transform="rotate(60 9 9)"/>
-                    <ellipse cx="9" cy="9" rx="7" ry="3" stroke="currentColor" strokeWidth="1" fill="none" transform="rotate(120 9 9)"/>
-                  </svg>
-                }
-              />
-              <IntegrationBadge 
-                name="REST API" 
+                title="Dedicated Support"
+                description="Personal account manager for every publisher. Fast response times and proactive optimization advice."
                 delay={0.3}
+              />
+              
+              <BenefitCard
                 icon={
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M4 6L8 9L4 12"/>
-                    <path d="M10 12H14"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <path d="M22 6l-10 7L2 6" />
                   </svg>
                 }
+                title="Full Transparency"
+                description="See exactly which offers are running, conversion rates, and earnings. No hidden fees or surprises."
+                delay={0.35}
               />
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 px-4">
-          <div className="max-w-[640px] mx-auto">
+        {/* ===== PLATFORMS ===== */}
+        <section className="py-16 md:py-20 px-4 border-y border-[#1a1a1a] bg-[#050505]">
+          <div className="max-w-[900px] mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-10"
+            >
+              <p className="text-[14px] text-[#666] mb-6">Works with your stack</p>
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+                {['Unity', 'iOS', 'Android', 'React Native', 'Flutter', 'Web'].map((platform, idx) => (
+                  <motion.div
+                    key={platform}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    className="px-5 py-2.5 bg-[#111] border border-[#222] rounded-full"
+                  >
+                    <span className="text-[13px] text-[#888] font-medium">{platform}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ===== CTA SECTION ===== */}
+        <section className="py-20 md:py-28 px-4">
+          <div className="max-w-[700px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="rounded-[24px] p-[1px]"
+              className="rounded-[28px] p-[1px]"
               style={{ background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #22c55e 100%)' }}
             >
-              <div className="bg-[#0a1208] rounded-[23px] py-12 md:py-16 px-8 text-center">
-                <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] text-white mb-4">
-                  Ready to monetize?
+              <div className="bg-gradient-to-br from-[#0a1a0f] to-[#050a05] rounded-[27px] py-14 md:py-20 px-8 text-center">
+                <motion.div
+                  initial={{ scale: 0.8 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="w-16 h-16 rounded-full bg-[#22c55e]/20 flex items-center justify-center mx-auto mb-6"
+                >
+                  <span className="text-[28px]">🚀</span>
+                </motion.div>
+                
+                <h2 className="text-[28px] md:text-[42px] font-medium tracking-[-0.03em] text-white mb-4">
+                  Ready to Monetize?
                 </h2>
-                <p className="text-[15px] md:text-[17px] text-[#666] mb-8 max-w-[400px] mx-auto">
-                  Join 500+ publishers already earning with ManyBoost offerwalls.
+                <p className="text-[15px] md:text-[17px] text-[#777] mb-8 max-w-[420px] mx-auto leading-[1.6]">
+                  Join hundreds of publishers already earning with ManyBoost offerwalls. Start today — it&apos;s free.
                 </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button 
-                    onClick={() => setLeadModalOpen(true)}
-                    className="px-8 py-4 bg-[#22c55e] hover:bg-[#16a34a] text-black font-medium rounded-full text-[16px] transition-colors duration-200 w-full sm:w-auto"
-                  >
-                    Get Started Free
-                  </button>
-                  <a 
-                    href="mailto:sales@manyboost.io"
-                    className="px-8 py-4 bg-transparent border border-[#22c55e]/30 hover:border-[#22c55e]/50 text-[#22c55e] font-medium rounded-full text-[16px] transition-colors duration-200 w-full sm:w-auto text-center"
-                  >
-                    Contact Sales
-                  </a>
-                </div>
+                
+                <motion.button 
+                  onClick={() => setLeadModalOpen(true)}
+                  className="px-10 py-5 bg-[#22c55e] hover:bg-[#16a34a] text-black font-semibold rounded-full text-[16px] transition-all duration-200 shadow-lg shadow-[#22c55e]/30"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Get Started Free →
+                </motion.button>
+                
                 <p className="text-[12px] text-[#444] mt-6">
                   No credit card required • 5-minute setup • NET-7 payouts
                 </p>
@@ -498,9 +776,9 @@ export default function OfferwallPage() {
             </motion.div>
           </div>
         </section>
+
       </main>
       <Footer />
     </>
   );
 }
-
