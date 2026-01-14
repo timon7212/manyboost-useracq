@@ -348,7 +348,7 @@ function GlowButton({
   
   return (
     <motion.a
-      href="mailto:sales@manyboost.io"
+      href="mailto:busdev@manyboost.io"
       className="relative group px-8 py-4 rounded-full font-medium text-[15px] overflow-hidden border border-[#333] bg-[#0a0a0a]"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}

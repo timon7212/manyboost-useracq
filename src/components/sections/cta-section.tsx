@@ -76,7 +76,7 @@ export function CtaSection() {
                     Start a campaign →
                   </button>
                   <a
-                    href="mailto:sales@manyboost.io"
+                    href="mailto:busdev@manyboost.io"
                     className="px-8 py-4 bg-transparent hover:bg-[#111] border border-[#333] text-white font-medium rounded-full text-[15px] transition-colors"
                   >
                     Talk to sales

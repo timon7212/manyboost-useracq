@@ -165,7 +165,7 @@ export function CaseStudiesSectionV2() {
               <p className="text-[14px] text-[#555]">Get a free campaign analysis and forecast</p>
             </div>
             <a 
-              href="mailto:sales@manyboost.io"
+              href="mailto:busdev@manyboost.io"
               className="px-6 py-3 bg-[#e97714] hover:bg-[#d16a10] text-black font-semibold rounded-full text-[14px] transition-colors whitespace-nowrap"
             >
               Get Free Analysis →

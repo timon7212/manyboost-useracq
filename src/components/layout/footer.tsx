@@ -78,7 +78,7 @@ export function Footer() {
             <h4 className="text-[13px] font-medium text-white uppercase tracking-[0.1em] mb-4">Company</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:sales@manyboost.io" className="text-[14px] text-[#666] hover:text-white transition-colors">
+                <a href="mailto:busdev@manyboost.io" className="text-[14px] text-[#666] hover:text-white transition-colors">
                   Contact
                 </a>
               </li>
@@ -100,8 +100,8 @@ export function Footer() {
             <h4 className="text-[13px] font-medium text-white uppercase tracking-[0.1em] mb-4">Get in touch</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:sales@manyboost.io" className="text-[14px] text-[#e97714] hover:underline">
-                  sales@manyboost.io
+                <a href="mailto:busdev@manyboost.io" className="text-[14px] text-[#e97714] hover:underline">
+                  busdev@manyboost.io
                 </a>
               </li>
               <li>

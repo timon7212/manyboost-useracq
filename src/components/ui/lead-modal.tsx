@@ -214,8 +214,8 @@ export function LeadModal({ isOpen, onClose, type }: LeadModalProps) {
 
                       <p className="text-[12px] text-[#444] text-center">
                         Or email us at{" "}
-                        <a href="mailto:sales@manyboost.io" className="text-[#e97714] hover:underline">
-                          sales@manyboost.io
+                        <a href="mailto:busdev@manyboost.io" className="text-[#e97714] hover:underline">
+                          busdev@manyboost.io
                         </a>
                       </p>
                     </form>
