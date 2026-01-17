@@ -132,7 +132,7 @@ async function sendConfirmationToLead(lead: {
   const typeMessages: Record<string, { title: string; message: string }> = {
     advertiser: {
       title: "Let's Scale Your User Acquisition",
-      message: "We're excited to learn more about your UA goals. Our team specializes in delivering high-quality, engaged users through our network of 200+ premium publishers.",
+      message: "Thanks for reaching out. We'll come back with a tailored media plan — DSP reach + direct publisher supply, fraud protection, and performance optimization focused on your KPI.",
     },
     publisher: {
       title: "Welcome to ManyBoost Publishers",
@@ -193,18 +193,18 @@ async function sendConfirmationToLead(lead: {
             </ul>
           </div>
 
-          <!-- Stats -->
+          <!-- Stats (placeholders, replace with real numbers later) -->
           <div style="display: flex; justify-content: space-between; text-align: center; margin-bottom: 32px;">
             <div style="flex: 1;">
-              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">200+</p>
-              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">Publishers</p>
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">500M+</p>
+              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">DAU Reach</p>
             </div>
             <div style="flex: 1;">
-              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">11M+</p>
-              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">MAU Worldwide</p>
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">20+</p>
+              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">DSP Partners</p>
             </div>
             <div style="flex: 1;">
-              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">50+</p>
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">180+</p>
               <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">Countries</p>
             </div>
           </div>

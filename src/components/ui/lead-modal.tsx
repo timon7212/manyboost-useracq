@@ -46,15 +46,16 @@ const modalConfig: Record<LeadType, {
     ],
   },
   advertiser: {
-    title: "Launch a Campaign",
-    subtitle: "Acquire high-LTV users via creators",
+    title: "Launch In‑App UA",
+    subtitle: "Get a media plan for DSP + direct publisher supply",
     color: "#e97714",
     fields: [
       { name: "name", label: "Your name", type: "text", placeholder: "John Doe", required: true },
       { name: "email", label: "Work email", type: "email", placeholder: "john@company.com", required: true },
-      { name: "company", label: "Company / App name", type: "text", placeholder: "Game Studio Inc." },
-      { name: "budget", label: "Monthly UA budget", type: "text", placeholder: "$10K, $50K, $100K+" },
-      { name: "message", label: "Tell us about your goals", type: "textarea", placeholder: "We want to acquire..." },
+      { name: "company", label: "Company / App", type: "text", placeholder: "Fintech App Inc." },
+      { name: "budget", label: "Monthly UA budget", type: "text", placeholder: "$50k, $150k, $500k+" },
+      { name: "monthly_traffic", label: "Target geos / regions", type: "text", placeholder: "US, UK, DE / LATAM / GCC" },
+      { name: "message", label: "KPIs & notes", type: "textarea", placeholder: "Primary KPI (CPI/CPE/CPA/ROAS), events, MMP, constraints…" },
     ],
   },
 };

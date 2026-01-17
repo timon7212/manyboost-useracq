@@ -1,0 +1,106 @@
+<svg width="1400" height="860" viewBox="0 0 1400 860" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0A0A"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E97714" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#333333" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#22C55E" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="chart" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#E97714" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#E97714" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 0.35 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer frame -->
+  <rect x="34" y="34" width="1332" height="792" rx="34" fill="url(#bg)" stroke="url(#stroke)" stroke-width="2"/>
+
+  <!-- Top bar -->
+  <rect x="54" y="54" width="1292" height="70" rx="20" fill="#0F0F0F" stroke="#1E1E1E"/>
+  <circle cx="88" cy="89" r="8" fill="#2A2A2A"/>
+  <circle cx="114" cy="89" r="8" fill="#2A2A2A"/>
+  <circle cx="140" cy="89" r="8" fill="#2A2A2A"/>
+  <rect x="190" y="76" width="280" height="26" rx="13" fill="#141414" stroke="#222222"/>
+  <rect x="490" y="76" width="150" height="26" rx="13" fill="#141414" stroke="#222222"/>
+  <rect x="1182" y="74" width="140" height="30" rx="15" fill="#E97714" fill-opacity="0.2" stroke="#E97714" stroke-opacity="0.4"/>
+  <text x="1252" y="94" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#E97714">PLACEHOLDER UI</text>
+
+  <!-- Left nav -->
+  <rect x="54" y="140" width="250" height="666" rx="22" fill="#0B0B0B" stroke="#1E1E1E"/>
+  <rect x="80" y="170" width="198" height="14" rx="7" fill="#1A1A1A"/>
+  <rect x="80" y="202" width="168" height="14" rx="7" fill="#141414"/>
+  <rect x="80" y="234" width="182" height="14" rx="7" fill="#141414"/>
+  <rect x="80" y="266" width="150" height="14" rx="7" fill="#141414"/>
+  <rect x="80" y="320" width="200" height="90" rx="16" fill="#0F0F0F" stroke="#2A2A2A"/>
+  <text x="180" y="370" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#666666">DSP MODULES</text>
+
+  <!-- Main content area -->
+  <rect x="320" y="140" width="1026" height="666" rx="22" fill="#0A0A0A" stroke="#1E1E1E"/>
+
+  <!-- KPI cards -->
+  <g filter="url(#softGlow)">
+    <rect x="348" y="168" width="320" height="120" rx="18" fill="#0F0F0F" stroke="#222222"/>
+    <rect x="686" y="168" width="320" height="120" rx="18" fill="#0F0F0F" stroke="#222222"/>
+    <rect x="1024" y="168" width="296" height="120" rx="18" fill="#0F0F0F" stroke="#222222"/>
+    <rect x="372" y="196" width="140" height="12" rx="6" fill="#1A1A1A"/>
+    <rect x="372" y="220" width="96" height="28" rx="10" fill="#141414"/>
+    <rect x="710" y="196" width="150" height="12" rx="6" fill="#1A1A1A"/>
+    <rect x="710" y="220" width="110" height="28" rx="10" fill="#141414"/>
+    <rect x="1048" y="196" width="130" height="12" rx="6" fill="#1A1A1A"/>
+    <rect x="1048" y="220" width="92" height="28" rx="10" fill="#141414"/>
+  </g>
+
+  <!-- Chart panel -->
+  <rect x="348" y="306" width="972" height="320" rx="22" fill="#0F0F0F" stroke="#222222"/>
+  <rect x="372" y="334" width="220" height="14" rx="7" fill="#1A1A1A"/>
+  <rect x="372" y="360" width="160" height="12" rx="6" fill="#141414"/>
+
+  <!-- Grid lines -->
+  <g opacity="0.35">
+    <path d="M372 560H1296" stroke="#222222"/>
+    <path d="M372 510H1296" stroke="#222222"/>
+    <path d="M372 460H1296" stroke="#222222"/>
+    <path d="M372 410H1296" stroke="#222222"/>
+  </g>
+
+  <!-- Area chart -->
+  <path d="M372 560 C 470 520, 520 520, 610 480 C 700 440, 760 450, 850 420 C 940 390, 1020 420, 1120 380 C 1210 340, 1240 360, 1296 330 L1296 626 L372 626 Z"
+        fill="url(#chart)"/>
+  <path d="M372 560 C 470 520, 520 520, 610 480 C 700 440, 760 450, 850 420 C 940 390, 1020 420, 1120 380 C 1210 340, 1240 360, 1296 330"
+        stroke="#E97714" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Table cards -->
+  <rect x="348" y="646" width="476" height="140" rx="22" fill="#0F0F0F" stroke="#222222"/>
+  <rect x="844" y="646" width="476" height="140" rx="22" fill="#0F0F0F" stroke="#222222"/>
+  <rect x="372" y="676" width="180" height="12" rx="6" fill="#1A1A1A"/>
+  <rect x="868" y="676" width="180" height="12" rx="6" fill="#1A1A1A"/>
+
+  <g opacity="0.9">
+    <rect x="372" y="706" width="420" height="12" rx="6" fill="#141414"/>
+    <rect x="372" y="730" width="380" height="12" rx="6" fill="#141414"/>
+    <rect x="372" y="754" width="400" height="12" rx="6" fill="#141414"/>
+    <rect x="868" y="706" width="420" height="12" rx="6" fill="#141414"/>
+    <rect x="868" y="730" width="390" height="12" rx="6" fill="#141414"/>
+    <rect x="868" y="754" width="405" height="12" rx="6" fill="#141414"/>
+  </g>
+
+  <!-- Caption -->
+  <text x="700" y="842" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#555555">
+    DSP Dashboard UI — Placeholder (replace with real product screenshots later)
+  </text>
+</svg>
