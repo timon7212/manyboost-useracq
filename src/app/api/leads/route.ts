@@ -193,18 +193,18 @@ async function sendConfirmationToLead(lead: {
             </ul>
           </div>
 
-          <!-- Stats (placeholders, replace with real numbers later) -->
+          <!-- Stats -->
           <div style="display: flex; justify-content: space-between; text-align: center; margin-bottom: 32px;">
             <div style="flex: 1;">
-              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">500M+</p>
-              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">DAU Reach</p>
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">7+</p>
+              <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">Years in UA</p>
             </div>
             <div style="flex: 1;">
               <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">20+</p>
               <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">DSP Partners</p>
             </div>
             <div style="flex: 1;">
-              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">180+</p>
+              <p style="color: #e97714; font-size: 28px; font-weight: 700; margin: 0;">100+</p>
               <p style="color: #666; font-size: 12px; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 0.5px;">Countries</p>
             </div>
           </div>

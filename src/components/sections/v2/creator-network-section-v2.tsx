@@ -67,7 +67,7 @@ export function CreatorNetworkSectionV2() {
             </h2>
             
             <p className="text-[15px] md:text-[16px] text-[#666] leading-[1.7] mb-8">
-              Direct access to traffic from content creators. 
+              130+ creators with 19.5M total audience. Direct access to traffic from content creators. 
               Real users who trust recommendations from their favorite creators.
               Higher engagement and retention compared to standard UA.
             </p>

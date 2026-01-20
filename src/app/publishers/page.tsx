@@ -52,10 +52,9 @@ function useCounter(end: number, duration: number = 2000) {
 export default function PublishersPage() {
   const [leadModalOpen, setLeadModalOpen] = useState(false);
 
-  const ecpm = useCounter(45, 1500);
   const fill = useCounter(98, 1500);
   const advertisers = useCounter(200, 1500);
-  const countries = useCounter(180, 1500);
+  const countries = useCounter(100, 1500);
 
   return (
     <>
@@ -140,14 +139,13 @@ export default function PublishersPage() {
           <div className="max-w-[1000px] mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <motion.div
-                ref={ecpm.ref}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <p className="text-[36px] md:text-[48px] font-semibold text-white leading-none">${ecpm.count}</p>
-                <p className="text-[12px] text-[#555] mt-2 uppercase tracking-[0.1em]">Avg eCPM</p>
+                <p className="text-[36px] md:text-[48px] font-semibold text-white leading-none">High</p>
+                <p className="text-[12px] text-[#555] mt-2 uppercase tracking-[0.1em]">eCPM (above market)</p>
               </motion.div>
               <motion.div
                 ref={fill.ref}
@@ -226,7 +224,7 @@ export default function PublishersPage() {
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="p-4 rounded-xl bg-[#111] border border-[#1a1a1a]">
-                    <div className="text-[24px] font-semibold text-[#22c55e]">$45+</div>
+                    <div className="text-[24px] font-semibold text-[#22c55e]">High</div>
                     <div className="text-[11px] text-[#555] uppercase tracking-[0.1em]">eCPM</div>
                   </div>
                   <div className="p-4 rounded-xl bg-[#111] border border-[#1a1a1a]">
@@ -273,7 +271,7 @@ export default function PublishersPage() {
                     <div className="text-[11px] text-[#555] uppercase tracking-[0.1em]">Fill Rate</div>
                   </div>
                   <div className="p-4 rounded-xl bg-[#111] border border-[#1a1a1a]">
-                    <div className="text-[24px] font-semibold text-[#e97714]">180+</div>
+                    <div className="text-[24px] font-semibold text-[#e97714]">100+</div>
                     <div className="text-[11px] text-[#555] uppercase tracking-[0.1em]">Countries</div>
                   </div>
                 </div>

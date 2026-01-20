@@ -279,7 +279,7 @@ export default function CreatorsPage() {
                       <Image src={CREATORS.tonali.avatar} alt={CREATORS.tonali.name} width={26} height={26} className="rounded-full border-2 border-black object-cover" />
                       <Image src={CREATORS.hina.avatar} alt={CREATORS.hina.name} width={26} height={26} className="rounded-full border-2 border-black object-cover" />
                     </div>
-                    <span className="text-[12px] text-[#666]">3,700+ creators</span>
+                    <span className="text-[12px] text-[#666]">130+ creators • 19.5M audience</span>
                   </div>
                 </motion.div>
               </div>

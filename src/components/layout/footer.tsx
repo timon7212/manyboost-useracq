@@ -6,9 +6,9 @@ export function Footer() {
   return (
     <footer className="border-t border-[#1a1a1a] bg-black">
       <div className="max-w-[1200px] mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-6 mb-12">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-2">
+          <div className="col-span-2">
             <Link href="/" className="inline-block mb-4">
               <span
                 className="text-[22px] font-medium tracking-[-0.03em]"
@@ -23,7 +23,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-[14px] text-[#666] leading-[1.6] max-w-[280px] mb-6">
-              Creator-driven user acquisition for mobile games. High-LTV users through gamified campaigns.
+              UA Tech Company. Quality users for apps and games through our own products and integrated distribution.
             </p>
             
             {/* Social links */}
@@ -51,23 +51,35 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Products */}
+          {/* User Acquisition */}
           <div>
-            <h4 className="text-[13px] font-medium text-white uppercase tracking-[0.1em] mb-4">Products</h4>
+            <h4 className="text-[13px] font-medium text-white uppercase tracking-[0.1em] mb-4">User Acquisition</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-[14px] text-[#666] hover:text-white transition-colors">
-                  For Advertisers
+                <Link href="/offerwall" className="text-[14px] text-[#666] hover:text-white transition-colors">
+                  Gaming UA
                 </Link>
               </li>
-              {/* <li>
-                <Link href="/creators" className="text-[14px] text-[#666] hover:text-white transition-colors">
-                  For Creators
-                </Link>
-              </li> */}
               <li>
-                <Link href="/offerwall" className="text-[14px] text-[#666] hover:text-white transition-colors">
-                  For Publishers
+                <Link href="/dsp" className="text-[14px] text-[#666] hover:text-white transition-colors">
+                  In-App UA
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Monetize */}
+          <div>
+            <h4 className="text-[13px] font-medium text-white uppercase tracking-[0.1em] mb-4">Monetize</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/creators" className="text-[14px] text-[#666] hover:text-white transition-colors">
+                  Creators
+                </Link>
+              </li>
+              <li>
+                <Link href="/publishers" className="text-[14px] text-[#666] hover:text-white transition-colors">
+                  Publishers
                 </Link>
               </li>
             </ul>
@@ -78,9 +90,9 @@ export function Footer() {
             <h4 className="text-[13px] font-medium text-white uppercase tracking-[0.1em] mb-4">Company</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:busdev@manyboost.io" className="text-[14px] text-[#666] hover:text-white transition-colors">
-                  Contact
-                </a>
+                <Link href="/" className="text-[14px] text-[#666] hover:text-white transition-colors">
+                  About Us
+                </Link>
               </li>
               <li>
                 <a href="mailto:careers@manyboost.io" className="text-[14px] text-[#666] hover:text-white transition-colors">

@@ -204,7 +204,7 @@ export function CompetitionSection() {
                   className="text-center"
                 >
                   <p className="text-[28px] md:text-[32px] font-medium text-white tracking-[-0.02em] mb-1">
-                    <span className="text-[#e97714]">3,700+</span> Creators
+                    <span className="text-[#e97714]">130+</span> Creators
                   </p>
                   <p className="text-[13px] text-[#666] mb-4">Each with their own team of fans</p>
                   

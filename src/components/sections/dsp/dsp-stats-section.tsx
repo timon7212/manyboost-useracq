@@ -27,7 +27,7 @@ export function DspStatsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
           <Stat value="500M+" label="DAU Reach" delay={0.05} />
           <Stat value="20+" label="Partner DSPs" delay={0.1} />
-          <Stat value="180+" label="Countries" delay={0.15} />
+          <Stat value="100+" label="Countries" delay={0.15} />
           <Stat value="<1%" label="Fraud Rate" hint="target" delay={0.2} />
         </div>
       </div>

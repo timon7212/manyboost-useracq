@@ -148,9 +148,9 @@ export function HeroSection() {
         {/* Creators */}
         <div className="flex flex-col items-center">
           <div className="mb-3 text-center">
-            <p className="text-[28px] font-medium leading-none tracking-[-0.02em] gradient-text">500M+</p>
+            <p className="text-[28px] font-medium leading-none tracking-[-0.02em] gradient-text">2.6M</p>
             <p className="text-[12px] leading-[1.3] font-medium mt-1 gradient-text">Audience</p>
-            <p className="text-[12px] leading-[1.3] font-medium gradient-text">3,700+ Creators</p>
+            <p className="text-[12px] leading-[1.3] font-medium gradient-text">130+ Creators</p>
             <p className="text-[12px] leading-[1.3] font-medium gradient-text">Worldwide</p>
           </div>
           <div className="relative flex justify-center" style={{ width: '110px', height: '65px' }}>
@@ -300,9 +300,9 @@ export function HeroSection() {
           <div className="flex flex-col items-center">
             {/* Stats text with gradient */}
             <div className="mb-3 text-center">
-              <p className="text-[32px] lg:text-[36px] font-medium leading-none tracking-[-0.02em] gradient-text">500M+</p>
+              <p className="text-[32px] lg:text-[36px] font-medium leading-none tracking-[-0.02em] gradient-text">2.6M</p>
               <p className="text-[13px] lg:text-[14px] leading-[1.3] font-medium mt-1 gradient-text">Audience</p>
-              <p className="text-[13px] lg:text-[14px] leading-[1.3] font-medium gradient-text">3,700+ Creators</p>
+              <p className="text-[13px] lg:text-[14px] leading-[1.3] font-medium gradient-text">130+ Creators</p>
               <p className="text-[13px] lg:text-[14px] leading-[1.3] font-medium gradient-text">Worldwide</p>
             </div>
             {/* Stacked creator photos - real creators */}

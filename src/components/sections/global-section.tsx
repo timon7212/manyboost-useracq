@@ -73,7 +73,7 @@ export function GlobalSection() {
               transition={{ duration: 0.5 }}
               className="text-[36px] md:text-[48px] lg:text-[59px] tracking-[-0.05em] leading-[0.86] mb-2 md:mb-3 font-medium"
             >
-              <span className="gradient-text">500M+</span>
+              <span className="gradient-text">2.6M</span>
               <span className="font-light text-[#999]"> Network</span>
             </motion.h2>
 
@@ -89,7 +89,7 @@ export function GlobalSection() {
                 From T1 → T2
               </span>
               <span className="text-[#e97714] text-[15px] md:text-[21px] tracking-[-0.05em]">
-                3,700+ Creators
+                130+ Creators
               </span>
             </motion.div>
 

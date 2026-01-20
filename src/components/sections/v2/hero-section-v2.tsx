@@ -95,7 +95,7 @@ function DesktopTrafficFlow() {
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
           <p className="text-[48px] lg:text-[56px] font-bold text-white leading-none tracking-tight">
-            200<span className="text-[#e97714]">+</span>
+            53<span className="text-[#e97714]">+</span>
           </p>
           <p className="text-[13px] text-[#666] mt-1">Publishers</p>
         </motion.div>
@@ -234,7 +234,7 @@ function MobileTrafficFlow() {
         className="text-center"
       >
         <p className="text-[38px] font-bold text-white leading-none tracking-tight">
-          200<span className="text-[#e97714]">+</span>
+          53<span className="text-[#e97714]">+</span>
         </p>
         <p className="text-[12px] text-[#666] mt-1">Publishers</p>
       </motion.div>
@@ -416,7 +416,7 @@ export function HeroSectionV2() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-[14px] md:text-[17px] lg:text-[19px] text-[#777] text-center leading-[1.6] max-w-[550px] mb-7 px-4 relative z-10"
         >
-          Get real installs from 200+ verified offerwall publishers.
+          Get real installs from 53 verified offerwall publishers with 2.6M MAU.
           <br className="hidden sm:block" />
           Pay only for results — CPI, CPE, or CPA.
         </motion.p>

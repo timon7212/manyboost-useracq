@@ -90,7 +90,7 @@ const advantages = [
       </svg>
     ),
     title: "Direct Publisher Traffic",
-    description: "Traffic directly from 200+ verified publishers. No middlemen — just direct access to quality users.",
+    description: "Traffic directly from 53 verified publishers with 2.6M MAU. No middlemen — just direct access to quality users.",
     highlight: true,
     size: "large" as const,
   },

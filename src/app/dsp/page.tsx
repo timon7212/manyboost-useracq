@@ -77,7 +77,7 @@ function Numbers() {
   const stats = [
     { value: "500M+", label: "DAU reach" },
     { value: "20+", label: "DSP partners" },
-    { value: "180+", label: "Countries" },
+    { value: "100+", label: "Countries" },
     { value: "<1%", label: "Fraud rate" },
   ];
 
@@ -126,8 +126,8 @@ function TrafficSources() {
       accent: "#22c55e",
     },
     {
-      title: "Direct Publishers",
-      desc: "Premium placements through direct SDK integrations with 200+ publishers globally.",
+      title: "Direct Apps",
+      desc: "Exclusive deals with premium apps for additional scale and unique inventory access.",
       tag: "Direct",
       accent: "#a78bfa",
     },

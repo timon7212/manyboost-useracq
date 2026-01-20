@@ -156,20 +156,20 @@ export function StatsBannerV2() {
           className="text-center mb-10"
         >
           <h2 className="text-[20px] md:text-[24px] font-medium text-white mb-2">
-            Trusted by <span className="text-[#e97714]">200+ Publishers</span> Worldwide
+            Trusted by <span className="text-[#e97714]">53 Publishers</span> Worldwide
           </h2>
           <p className="text-[12px] md:text-[13px] text-[#555]">
-            Real traffic from verified offerwall sources
+            Real traffic from verified offerwall sources — 2.6M MAU
           </p>
         </motion.div>
 
         {/* Stats */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0">
-          <StatItem value={4} suffix="M+" label="MAU in US" delay={0} />
+          <StatItem value={2} suffix=".6M" label="Monthly Active Users" delay={0} />
           <Divider />
-          <StatItem value={11} suffix="M+" label="MAU Worldwide" delay={0.1} />
+          <StatItem value={53} suffix="+" label="Publishers" delay={0.1} />
           <Divider />
-          <StatItem value={200} suffix="+" label="Publishers" delay={0.2} />
+          <StatItem value={130} suffix="+" label="Creators" delay={0.2} />
         </div>
 
         {/* Publisher logos */}

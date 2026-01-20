@@ -148,8 +148,8 @@ function Hero() {
 function Stats() {
   const stats = [
     { value: "$50M+", label: "Ad spend managed" },
-    { value: "500M+", label: "Daily active users" },
-    { value: "180+", label: "Countries" },
+    { value: "7+", label: "Years in mobile UA" },
+    { value: "100+", label: "Countries" },
     { value: "30+", label: "Clients worldwide" },
   ];
 
@@ -184,20 +184,20 @@ function Stats() {
 function Solutions() {
   const solutions = [
     {
-      tag: "User Acquisition",
+      tag: "Rewarded UA Suite",
       title: "Gaming UA",
-      desc: "Offerwall-based user acquisition for mobile games. SDK integrations with 200+ publishers, creator network, and performance-driven campaigns.",
+      desc: "Rewarded acquisition powered by SDK + creators. 53 offerwall publishers with 2.6M MAU, plus 130+ creators with 19.5M audience.",
       href: "/offerwall",
       accent: "#e97714",
-      features: ["Offerwall SDK", "Creator Network", "Rewarded Traffic"],
+      features: ["Offerwall SDK", "Creator Network", "2.6M MAU"],
     },
     {
-      tag: "User Acquisition",
+      tag: "Programmatic UA Suite",
       title: "In-App UA",
-      desc: "Programmatic user acquisition across all app verticals. Own DSP, 20+ partner DSPs, and direct publisher integrations.",
+      desc: "Programmatic scale, engineered for speed. Own DSP, 20+ partner DSPs, and direct publisher integrations across 500M+ DAU.",
       href: "/dsp",
       accent: "#22c55e",
-      features: ["Proprietary DSP", "20+ DSP Partners", "500M+ DAU"],
+      features: ["MBX DSP", "20+ DSP Partners", "500M+ DAU"],
     },
     {
       tag: "Monetization",
@@ -305,7 +305,7 @@ function GlobalReach() {
               <span className="text-[#555]">everywhere</span>
             </h2>
             <p className="text-[15px] text-[#555] leading-[1.7] mb-8 max-w-[420px]">
-              Our network spans 180+ countries with localized campaigns, regional expertise, and 24/7 optimization.
+              Our network spans 100+ countries with localized campaigns, regional expertise, and 24/7 optimization.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
