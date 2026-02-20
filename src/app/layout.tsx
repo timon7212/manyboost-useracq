@@ -113,6 +113,12 @@ export default function RootLayout({
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         
+        {/* Google Fonts - Playfair Display for corporate pages */}
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" 
+          rel="stylesheet" 
+        />
+        
         {/* Canonical URL */}
         <link rel="canonical" href="https://manyboost.io" />
 
